@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{title}} | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+  <h3>{{Title}}</h3>
+</header>
+<section>
+  <div class="row">
+    <div class="col-1 btn">
+      <a href="{% url 'words:newword' %}" class="btn btn-default" role="button">N</a>
+    </div>
+    <div class="col-11">
+      Palavras
+    </div>
+  </div>
+  {% if object_list %}
+    {% for obj in object_list %}
+    <div class="row">
+      <div class="col-2 btn">
+        <a href="" class="btn btn-default" role="button">A</a>
+      </div>
+      <div class="col-8">
+          <a href="">{{obj.word}}</a>
+      </div>
+      <div class="col-2">
+        <a href="" class="btn btn-default" role="button">E</a>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
+</section>
+
+{% endblock %}

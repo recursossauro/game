@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Conta | {{block.super}}{% endblock %}
+
+{% block content %}
+  <header>
+    <h1>Conta</h1>
+  </header>
+  <section>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="{% url 'access:updateuser' %}" class="nav-link">Alterar usuário</a></li>
+      <li class="nav-item"><a href="#">Alterar senha</a></li>
+    </ul>
+  </section>
+{% endblock %}

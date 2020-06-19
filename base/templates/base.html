@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
- <title>{% block titulo %}Projeto{% endblock %} </title>
+ <title>{% block titulo %}O Jogo do Gustavo{% endblock %} </title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <!-- Latest compiled and minified CSS -->
@@ -25,7 +25,7 @@
 
 <div class="jumbotron text-center" style="margin-bottom:0">
  <h1>Jogos do Gustavo</h1>
- <h2>Aprende-se jogando</h2>
+ <h2>Aprender Brincando</h2>
  <p></p>
 </div>
 
@@ -35,6 +35,7 @@
    <span class="navbar-toggler-icon"></span>
  </button>
  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+<!--
    <ul class="navbar-nav">
      <li class="nav-item">
        <a class="nav-link" href="#">Opção 1</a>
@@ -46,6 +47,7 @@
        <a class="nav-link" href="#">Link</a>
      </li>
    </ul>
+ -->
    <div class="nav-item">
       {% if user.is_authenticated %}
         <span class="nav-brand glyphicon glyphicon-log-in">{{user}}</span>
@@ -53,17 +55,23 @@
     <div class="">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Minha Conta</a>
+          <a class="nav-link" href="{% url 'words:words'%}">Palavras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'words:newword'%}">Nova Palavra</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'access:index' %}">Minha Conta</a>
         </li>
       </ul>
     </div>
     <div class="nav-item">
-        <a id="logout" class="nav-link" href="">Sair</a>
+        <a id="logout" class="nav-link" href=" {% url 'access:logout' %} ">Sair</a>
       {% else %}
-        <a id="login" class="nav-link" href="">Entrar</a>
+        <a id="login" class="nav-link" href="{% url 'access:login' %}">Entrar</a>
     </div>
     <div class="nav-item">
-        <a id="novousuario" class="nav-link" href="">Novo</a>
+        <a id="novousuario" class="nav-link" href="{% url 'access:newuser' %}">Novo</a>
       {% endif %}
     </div>
  </div>

@@ -14,8 +14,8 @@ body a {
 
 .jumbotron {
  background: none;
- color: #f0e3c6;
-
+ color: #008800;
+ text-shadow: 2px 2px 1px #000000, -2px -2px 1px #000000;
 }
 
 nav {
@@ -34,6 +34,11 @@ header {
 
 header h1, h2 {
  text-align: center;
+}
+
+.little_img {
+    max-width: 50%;
+    max-height: 200px;
 }
 
 /*

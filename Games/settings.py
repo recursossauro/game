@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
 
     # Modules
-    'base'
+    'base',
+    'access',
+    'words',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# pasta para uploads
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# AUTH
+
+# AUTH_USER_MODEL = 'Zugriff.User'
+LOGIN_URL = 'access:login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_URL = 'access:logout'
