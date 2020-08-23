@@ -1,0 +1,129 @@
+{% extends 'gameplace/gamer_place_base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}Drag Letter | {{block.super}} {% endblock %}
+
+{% block game %}
+
+
+<style media="screen">
+
+  img {
+    display: block;
+    width:150px;
+    margin-left:  auto;
+    margin-right: auto;
+  }
+
+  table {
+    font-size: 50px;
+    min-width: 250px;
+    margin-left:  auto;
+    margin-right: auto;
+
+  }
+
+  .font {
+    font    : bold 100% Comic, sans-serif;
+  }
+
+  .inner {
+    color   : #252525;
+    text-shadow: 1px 1px #F0F0FF, -3px -3px 1px #101010;
+  }
+
+</style>
+<script type="text/javascript">
+
+  var right_audio = new Audio("{% static 'sounds/right.mp3' %}");
+  var wrong_audio = new Audio("{% static 'sounds/wrong.mp3' %}");
+  var completed_audio = new Audio("{% static 'sounds/completed.mp3' %}");
+
+
+  var word    = '{{word}}';
+  var wording = 0;
+
+
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    encaixe = ev.target.innerHTML;
+    letra   = document.getElementById(data).innerHTML;
+
+    if (encaixe == letra) {
+      ev.target.className="font";
+      document.getElementById(data).innerHTML="";
+      wording ++;
+      if (wording==word.length) {
+        complited();
+      } else {
+        right_audio.play();
+      }
+    } else {
+      wrong_audio.play();
+    }
+
+  }
+
+  function complited() {
+    completed_audio.play();
+    alert('Congratulations! You have commplited the word {{word.word}}');
+    document.getElementById("drag_letters_form").submit();
+
+  }
+
+</script>
+<header>
+  <h3>Drag Letters</h3>
+</header>
+<section>
+  <div class="img_square">
+
+  </div>
+  <img src="{{word.image.url}}" alt="">
+  {% if word %}
+    <table>
+      <tr>
+        {% for letter in word.word %}
+          <td><span id="caracter{{ forloop.counter }}" ondrop="drop(event)" ondragover="allowDrop(event)" class="font inner">{{letter}}</span></td>
+        {% endfor %}
+      </tr>
+    </table>
+    <table>
+      <tr>
+        {% for letter in randomWord %}
+          <td><span class="font" id="drag{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">{{letter}}</span></td>
+        {% endfor %}
+      </tr>
+
+    </table>
+    <form id="drag_letters_form" action="" method="post">
+      {% csrf_token %}
+
+      <input type="hidden" name="word_id" id="word_id" value="{{word.id}}">
+
+
+    </form>
+  {% else %}
+    <div class="alert alert-dark">
+      <p>Sorry.</p>
+      <p>There is no word.</p>
+      <p>Asck for the master to insert some one.</p>
+      <a href="{% url 'indexredirect' %}" class="button">Click here to return.</a>
+    </div>
+  {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'gameplace/gamer_place_base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Drag Letter | {{block.super}}{% endblock %}
+
+{% block game %}
+<article class="">
+  <header>
+    <h3>Jogos</h3>
+  </header>
+  <main>
+    <a href="{% url 'gameplace:dragletter' object.pk %}">Drag Letter</a>
+  </main>
+</article>
+
+
+{% endblock %}

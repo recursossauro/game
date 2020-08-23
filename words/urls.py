@@ -11,8 +11,8 @@ from .views import (
 urlpatterns = [
 
     path('', WordListView.as_view(), name='words'),
-    path('novapalavra/', WordCreateView.as_view(),name='newword'),
-    path('<int:pk>/alterapalavra/', WordUpadateView.as_view(), name='updateword'),
-    path('<int:pk>/excluipalavra/', WordDeleteView.as_view(), name='deleteword'),
+    path('<slug:slugmaster>/<int:pkgamer>/newword/', WordCreateView.as_view(),name='newword'),
+    path('<slug:slugmaster>/<int:pkgamer>/<int:pk>/updateword/', WordUpadateView.as_view(), name='updateword'),
+    path('<slug:slugmaster>/<int:pkgamer>/<int:pk>/deleteword/', WordDeleteView.as_view(), name='deleteword'),
 
 ]

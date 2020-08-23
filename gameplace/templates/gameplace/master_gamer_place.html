@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{object.nickname}}'s place | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+    <h3><img class="micro_img" src="{{ object.master.avatar.url }}" alt=""> {{ object.master.nickname }}</h3>
+  <h3>{{object.nickname}}'s Place</h3>
+</header>
+<section>
+  <article class="">
+
+    <img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">
+
+    <ul>
+      <li><a href="{% url 'gameplace:games' object.pk %}">Play</a></li>
+      <li><a href="{% url 'gameplace:updategamer' object.master.slug object.pk %}">Edit</a></li>
+      <li><a href="{% url 'gameplace:updategamerpassword' object.master.slug object.pk %}">Change Password</a></li>
+      <li><a href="{% url 'gameplace:deletemastergamer' object.master.slug object.pk %}">Delete</a></li>
+    </ul>
+
+  </article>
+</section>
+<section class="galery">
+  <header>
+    <h3>Words</h3>
+  </header>
+    {% for word in object.word_set.all %}
+      <article class="panel">
+
+        <h3>{{word}}</h3>
+        <a href="{% url 'words:updateword' object.master.slug object.pk word.pk %}">
+          {% if word.image.url %}
+            <img class="little_word_image" src="{{word.image.url}}" alt="{{word.image.url}}">
+          {% else %}
+            <img class="little_word_image" src="{% url 'static/images/generic-avatar.png' %}" alt="generic">
+          {% endif %}
+        </a>
+        <a href="{% url 'words:deleteword' object.master.slug object.pk word.pk %}"><h4>Delete word</h4></a>
+      </article>
+    {% endfor %}
+  <article class="panel">
+    <h3>New Word</h3>
+    <a href="{% url 'words:newword' object.master.slug object.pk %}">
+      <img class="little_word_image" src="{% static '/images/generic-avatar.png' %}" alt="new word">
+    </a>
+  </article>
+</section>
+
+{% endblock %}

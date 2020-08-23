@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{gamer.nickname}}'s place | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+    <h3><img class="micro_img" src="{{ gamer.master.avatar.url }}" alt=""> {{ gamer.master.nickname }}</h3>
+  <h3>{{gamer.nickname}}'s Place</h3>
+</header>
+<section>
+  <article class="">
+
+    <img class="avatar_img" src="{{gamer.avatar.url}}" alt="{{gamer.nickname}}">
+
+  </article>
+</section>
+<section class="galery">
+ {% block word %}{% endblock %}
+</section>
+
+{% endblock %}

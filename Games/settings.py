@@ -25,7 +25,7 @@ SECRET_KEY = '!dak3lp$$4&9-c#2ud(e#h^o$0m=qom*c2q+msmo1^ha)d8=o5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '192.168.15.7']
 
 
 # Application definition
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'base',
     'access',
     'words',
+    'gameplace',
+    'gamerplace',
 ]
 
 MIDDLEWARE = [
@@ -136,5 +138,6 @@ MEDIA_URL = '/media/'
 
 # AUTH_USER_MODEL = 'Zugriff.User'
 LOGIN_URL = 'access:login'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'indexredirect'
 LOGOUT_URL = 'access:logout'
+LOGOUT_REDIRECT_URL = 'indexredirect'

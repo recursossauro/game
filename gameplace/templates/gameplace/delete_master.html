@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{object.nickname}} | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+  <h3>Delete {{object.nickname}}</h3>
+</header>
+<section class="">
+  <article class="">
+
+    <form class="form-horizontal" method="post">
+      {% csrf_token %}
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ error }}
+        </div>
+      {% endfor %}
+      <fieldset>
+          <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+              <p>Do you want to delete avatar {{ object.nickname }}?<br/>
+              <button type="submit" class="btn btn-primary">Yes</button>
+              <a href="{% url 'index' %}" type="button" class="btn btn-primary">No</a>
+            </div>
+          </div>
+      </fieldset>
+    </form>
+
+  </article>
+</section>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{title}} {{object.nickname}}'s place | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+  <h3>GAMER PLACE</h3>
+</header>
+<article class="">
+  <h4>{{object.nickname}}</h4>
+  <img class="avatar_img" src="{{object.avatar.url}}" alt="">
+  <ul>
+    <li><a href="{% url 'gameplace:dragletter' object.pk %}">Play</a></li>
+  </ul>
+</article>
+<aside class="">
+  <div class="row">
+    <div class="col-9">
+      Word
+    </div>
+    <div class="col-3">
+      Rights
+    </div>
+  </div>
+  {% for right in object.getRights %}
+    <div class="row">
+      <div class="col-9">
+        {{right.word}}
+      </div>
+      <div class="col-3">
+        {{right.number}}
+      </div>
+    </div>
+  {% endfor %}
+</aside>
+<section class="galery">
+</section>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{title}} | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+  <h3>Gamer PLACE</h3>
+</header>
+<article class="">
+  <p>{{object.name}}</p>
+  <img src="object.avatar.url" alt="avatar">
+</article>
+
+<section class="galery">
+  <h2>Avatars</h2>
+
+  {% for master in masters %}
+
+    <article class="panel">
+
+      <h3>{{master.nickname}}</h3>
+      <a href="{% url 'gameplace:master' master.slug %}">
+        <img src="{{master.avatar.url}}" alt="{{master.nickname}}">
+      </a>
+    </article>
+
+  {% endfor %}
+  <article class="panel">
+    <h3>New Avatar</h3>
+    <a href="{% url 'gameplace:newmaster' %}">
+      <img src="{% static '/images/generic-avatar.png' %}" alt="new avatar">
+    </a>
+  </article>
+</section>
+
+{% endblock %}

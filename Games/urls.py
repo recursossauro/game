@@ -22,12 +22,16 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from django.views.generic import TemplateView
+from base.views import IndexRedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('acesso/',include(('access.urls','access'), namespace='access')),
-    path('palavras/', include(('words.urls','words'), namespace='words')),
+    path('index', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', IndexRedirectView.as_view(), name='indexredirect'),
+    path('access/',include(('access.urls','access'), namespace='access')),
+    path('words/', include(('words.urls','words'), namespace='words')),
+    path('gameplace/', include(('gameplace.urls','gameplace'),namespace='gameplace')),
+    path('gamerplace/', include(('gamerplace.urls','gamerplace'),namespace='gamerplace')),
 
 ]
 

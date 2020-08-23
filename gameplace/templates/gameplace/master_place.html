@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{object.nickname}} | {{block.super}}{% endblock %}
+
+{% block content %}
+<header>
+  <h3>{{object.nickname}}'s Place</h3>
+</header>
+<section>
+  <article class="">
+
+    <img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">
+
+    <ul>
+      <li><a href="{% url 'gameplace:updatemaster' object.slug %}">Edit</a></li>
+      <li><a href="{% url 'gameplace:deletemaster' object.slug %}">Delete</a></li>
+    </ul>
+
+  </article>
+</section>
+<section class="galery">
+  <header>
+    <h3>Gamers</h3>
+  </header>
+    {% for gamer in gamers %}
+      <article class="panel">
+
+        <h3>{{gamer.nickname}}</h3>
+        <a href="{% url 'gameplace:mastergamer' master.slug gamer.pk %}">
+          {% if gamer.avatar.url %}
+            <img src="{{gamer.avatar.url}}" alt="{{gamer.avatar.url}}">
+          {% else %}
+            <img src="{% url 'static/images/generic-avatar.png' %}" alt="generic">
+          {% endif %}
+        </a>
+      </article>
+    {% endfor %}
+  <article class="panel">
+    <h3>New Gamer</h3>
+    <a href="{% url 'gameplace:newgamer' object.slug %}">
+      <img src="{% static '/images/generic-avatar.png' %}" alt="new gamer">
+    </a>
+  </article>
+</section>
+
+{% endblock %}

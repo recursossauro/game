@@ -1,8 +1,5 @@
 
 body {
- background-image: url('../images/background.jpg');
- background-repeat: no-repeat;
- background-size: 100% auto;
  /*background-attachment: fixed;*/
  background-color: black;
  color: pink;
@@ -13,9 +10,13 @@ body a {
 }
 
 .jumbotron {
- background: none;
- color: #008800;
- text-shadow: 2px 2px 1px #000000, -2px -2px 1px #000000;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  background-color: black;
+  color: #008800;
+  text-shadow: 2px 2px 1px #000000, -2px -2px 1px #000000;
 }
 
 nav {
@@ -32,13 +33,60 @@ header {
  color: #a78314;
 }
 
-header h1, h2 {
+header h1, h2, h3 {
  text-align: center;
 }
 
 .little_img {
     max-width: 50%;
     max-height: 200px;
+}
+
+.little_word_image {
+  max-width: 30px;
+  max-height: 40px;
+}
+
+.micro_img {
+  float: left;
+  max-width: 30px;
+  max-height: 50px;
+}
+
+.avatar_img {
+  display: block;
+  max-width: 50%;
+  max-height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.galery {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 920px;
+  max-width: 90%;
+}
+
+.galery .panel {
+  width:300px;
+  height: 100%;
+  display: inline-block;
+  padding: 5px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.panel img {
+
+  width: auto;
+  max-width: 290px;
+  max-height: 100%;
+  min-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*
