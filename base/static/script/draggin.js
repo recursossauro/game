@@ -55,6 +55,8 @@ document.body.onload = function(){
         elements[i].initialOffsetY = b.top + window.pageYOffset;
         elements[i].x = b.left;
         elements[i].y = b.top;
+        elements[i].initialX = b.left;
+        elements[i].initialY = b.top;
         elements[i].style.cursor = "move";
       document.addEventListener('mouseup', end);
         document.addEventListener('touchend', end);
@@ -154,8 +156,19 @@ document.body.onload = function(){
     };
 
     function end(evt) {
+
       // When the mouse is lifted up, set moving to false
       moving = false;
+
+
+      // Restore initial position of the element dragged
+      var dx = tgt.initialX;
+      var dy = tgt.initialY;
+      // Apply the styles to the element
+      var position = 'left:'+dx+'; top:'+dy+';';
+      evt.target.setAttribute('style', position);
+
+
     };
 
     function outerHeight(el) {

@@ -36,45 +36,17 @@
   }
 
 </style>
+<script type="text/javascript" src="{% static "script/draggin.js" %}"></script>
 <script type="text/javascript">
 
-  var right_audio = new Audio("{% static 'sounds/right.mp3' %}");
-  var wrong_audio = new Audio("{% static 'sounds/wrong.mp3' %}");
+  var right_audio     = new Audio("{% static 'sounds/right.mp3' %}");
+  var wrong_audio     = new Audio("{% static 'sounds/wrong.mp3' %}");
   var completed_audio = new Audio("{% static 'sounds/completed.mp3' %}");
 
 
   var word    = '{{word}}';
   var wording = 0;
 
-
-  function allowDrop(ev) {
-    ev.preventDefault();
-  }
-
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-
-  function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    encaixe = ev.target.innerHTML;
-    letra   = document.getElementById(data).innerHTML;
-
-    if (encaixe == letra) {
-      ev.target.className="font";
-      document.getElementById(data).innerHTML="";
-      wording ++;
-      if (wording==word.length) {
-        complited();
-      } else {
-        right_audio.play();
-      }
-    } else {
-      wrong_audio.play();
-    }
-
-  }
 
   function complited() {
     completed_audio.play();
@@ -96,14 +68,14 @@
     <table>
       <tr>
         {% for letter in word.word %}
-          <td><span id="caracter{{ forloop.counter }}" ondrop="drop(event)" ondragover="allowDrop(event)" class="font inner">{{letter}}</span></td>
+          <td><span id="caracter{{ forloop.counter }}" class="font inner">{{letter}}</span></td>
         {% endfor %}
       </tr>
     </table>
     <table>
       <tr>
         {% for letter in randomWord %}
-          <td><span class="font" id="drag{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">{{letter}}</span></td>
+          <td><span class="font draggable" id="drag{{ forloop.counter }}">{{letter}}</span></td>
         {% endfor %}
       </tr>
 
