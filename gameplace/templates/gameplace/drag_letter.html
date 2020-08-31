@@ -68,14 +68,14 @@
     <table>
       <tr>
         {% for letter in word.word %}
-          <td><span id="caracter{{ forloop.counter }}" class="font inner target">{{letter}}</span></td>
+          <td><span id="{{letter}}" class="font inner target">{{letter}}</span></td>
         {% endfor %}
       </tr>
     </table>
     <table>
       <tr>
         {% for letter in randomWord %}
-          <td><span class="font draggable" id="drag{{ forloop.counter }}">{{letter}}</span></td>
+          <td><span class="font draggable" id="{{letter}}">{{letter}}</span></td>
         {% endfor %}
       </tr>
 

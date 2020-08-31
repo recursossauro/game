@@ -178,12 +178,14 @@ document.body.onload = function(){
 
       // Distance formula: d=√((x_2-x_1)²+(y_2-y_1)²)
 
-      s = 4 // px
+      s = 5 // px
 
       // Select all elements with the 'draggable' class and stores them in the 'elements' variable
       targets = document.querySelectorAll(".target");
+
+      right = false;
       for (i=0; i<targets.length; i++) {
-        if (targets[i].innerHTML == draggedElement.innerHTML) {
+        if (targets[i].id == draggedElement.id) {
           // Calculate the center x and y from the target
           xCenterTarget = targets[i].getBoundingClientRect().left + (targets[i].getBoundingClientRect().right-targets[i].getBoundingClientRect().left)/2;
           yCenterTarget = targets[i].getBoundingClientRect().top + (targets[i].getBoundingClientRect().bottom-targets[i].getBoundingClientRect().top)/2;
@@ -193,26 +195,30 @@ document.body.onload = function(){
 
           distance = Math.sqrt(Math.pow((xCenterTarget-xCenterDragged),2)+Math.pow((yCenterTarget-yCenterDragged),2))
 
-
+          // Verify if the distance match
           if (distance <= s) {
-            alert('acertou');
-            // Se acertou:
-            //  atualiza número de acertos
-            //  verifica se o número de letras corretas é igual ao número de letras da palavra
-            //  Se sim, toca música da vitória e vai para a página da vitória
-            //  Se não:
-            //    retira a capacidade de ser draggavel do draggedElement
-            //    toca a musiquinha do acerto
-          } else {
-            alert('errou!');
-            // Restore initial position of the element dragged
-            var dx = draggedElement.initialX;
-            var dy = draggedElement.initialY;
-            // Apply the styles to the element
-            var position = 'left:'+dx+'; top:'+dy+';';
-            draggedElement.setAttribute('style', position);
+            // stop the loop for
+            i = targets.length;
+            right = true;
           }
         }
+      }
+      if (right) {
+        alert('acertou');
+        //  atualiza número de acertos
+        //  verifica se o número de letras corretas é igual ao número de letras da palavra
+        //  Se sim, toca música da vitória e vai para a página da vitória
+        //  Se não:
+        //    retira a capacidade de ser draggavel do draggedElement
+        //    toca a musiquinha do acerto
+      } else {
+        alert('errou!');
+        // Restore initial position of the element dragged
+        var dx = draggedElement.initialX;
+        var dy = draggedElement.initialY;
+        // Apply the styles to the element
+        var position = 'left:'+dx+'; top:'+dy+';';
+        draggedElement.setAttribute('style', position);
       }
     }
 }
