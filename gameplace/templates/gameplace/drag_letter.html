@@ -36,30 +36,14 @@
   }
 
 </style>
+
 <script type="text/javascript" src="{% static "script/draggin.js" %}"></script>
-<script type="text/javascript">
 
-  var right_audio     = new Audio("{% static 'sounds/right.mp3' %}");
-  var wrong_audio     = new Audio("{% static 'sounds/wrong.mp3' %}");
-  var completed_audio = new Audio("{% static 'sounds/completed.mp3' %}");
-
-
-  var word    = '{{word}}';
-  var wording = 0;
-
-
-  function complited() {
-    completed_audio.play();
-    alert('Congratulations! You have commplited the word {{word.word}}');
-    document.getElementById("drag_letters_form").submit();
-
-  }
-
-</script>
 <header>
   <h3>Drag Letters</h3>
 </header>
 <section>
+  <span style="display:none" id='word'>{{word.word}}</span>
   <div class="img_square">
 
   </div>

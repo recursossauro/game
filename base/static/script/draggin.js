@@ -1,4 +1,4 @@
-document.body.onload = function(){
+document.body.onload = function() {
     //Apply some basic styles
     var css = ".draggable{cursor: move;display: inline-block;} .text{display: inline-block; cursor: move;} .text:focus{cursor: auto;} .text-wrapper{width: 100%;position: relative;} .wrap{position: absolute;margin: auto;top: 0;bottom: 0;left: 0;right: 0;}';";
     var style = document.createElement('style');
@@ -172,6 +172,20 @@ document.body.onload = function(){
       return height;
     }
 
+    // Set sounds
+    var right_audio      = new Audio('/static/sounds/right.mp3');
+    var wrong_audio      = new Audio('/static/sounds/wrong.mp3');
+    var completed_audio  = new Audio('/static/sounds/completed.mp3');
+    var numRightToFinish = document.getElementById('word').innerHTML.length;
+    var numRight         = 0;
+
+    function complited() {
+      completed_audio.play();
+      alert('Congratulations! You have commplited the word '+document.getElementById('word').innerHTML);
+      document.getElementById("drag_letters_form").submit();
+
+    }
+
     function detectHitTarget(draggedElement) {
       // Detect a hit the target when the center of the target caracter is s px size
       // distant of the center of the dragged caracter.
@@ -204,15 +218,11 @@ document.body.onload = function(){
         }
       }
       if (right) {
-        alert('acertou');
-        //  atualiza número de acertos
-        //  verifica se o número de letras corretas é igual ao número de letras da palavra
-        //  Se sim, toca música da vitória e vai para a página da vitória
-        //  Se não:
-        //    retira a capacidade de ser draggavel do draggedElement
-        //    toca a musiquinha do acerto
+        numRight++;
+        if (numRight>=numRightToFinish) complited();
+        else right_audio.play();
       } else {
-        alert('errou!');
+        wrong_audio.play();
         // Restore initial position of the element dragged
         var dx = draggedElement.initialX;
         var dy = draggedElement.initialY;
