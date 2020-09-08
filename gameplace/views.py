@@ -206,7 +206,7 @@ def getGamer(user, pk):
 class DragLetterFormView(LoginRequiredMixin, FormView):
 
     template_name = 'gameplace/drag_letter.html'
-    success_url = reverse_lazy('indexredirect')
+
     form_class = WordIdForm
 
     def setup(self, request, *args, **kwargs):
@@ -260,3 +260,6 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
             right.save()
 
         return super(DragLetterFormView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('gameplace:dragletter', kwargs={'pk':self.kwargs['pk']})

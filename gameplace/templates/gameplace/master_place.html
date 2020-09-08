@@ -32,9 +32,9 @@
         <h3>{{gamer.nickname}}</h3>
         <a href="{% url 'gameplace:mastergamer' master.slug gamer.pk %}">
           {% if gamer.avatar.url %}
-            <img src="{{gamer.avatar.url}}" alt="{{gamer.avatar.url}}">
+            <img src="{{gamer.avatar.url}}" alt="{{gamer.avatar.url}}" class='img_panel'>
           {% else %}
-            <img src="{% url 'static/images/generic-avatar.png' %}" alt="generic">
+            <img src="{% url 'static/images/generic-avatar.png' %}" alt="generic" class='img_panel' >
           {% endif %}
         </a>
       </article>
@@ -42,7 +42,7 @@
   <article class="panel">
     <h3>New Gamer</h3>
     <a href="{% url 'gameplace:newgamer' object.slug %}">
-      <img src="{% static '/images/generic-avatar.png' %}" alt="new gamer">
+      <img src="{% static '/images/generic-avatar.png' %}" class='img_panel' alt="new gamer">
     </a>
   </article>
 </section>
