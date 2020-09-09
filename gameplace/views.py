@@ -247,7 +247,6 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
         return context
 
     def form_valid(self, form):
-
         if (form.is_valid()):
             # Get an Right if exist or create one.
             word = get_object_or_404(Word, id=form.cleaned_data['word_id'], gamer = self.gamer)
