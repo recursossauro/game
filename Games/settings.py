@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Libs
     'widget_tweaks',
+    'storages',
 
     # Modules
     'base',
@@ -160,3 +161,7 @@ LOGOUT_REDIRECT_URL = 'indexredirect'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+# Use DropBox Storage to statics files and uploaded images
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = 'Tr9AIL2HTJkAAAAAAAAAAV355M6PnBsyiPqas47gAYInjJ6WB55-npbkep7kz9Xk'
