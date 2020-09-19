@@ -25,30 +25,49 @@
 
   </article>
 </section>
-<section class="galery">
+<section class="">
+  <header>
+    <h3>Results</h3>
+  </header>
+  {% for right in object.getRights %}
+    <div class="row">
+      <div class="col-9">
+        {{right.word}}
+      </div>
+      <div class="col-3">
+        {{right.number}}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+<section class="">
   <header>
     <h3>Words</h3>
   </header>
+  <div class="galery">
     {% for word in object.word_set.all %}
       <article class="panel">
-
         <h3>{{word}}</h3>
         <a href="{% url 'words:updateword' object.master.slug object.pk word.pk %}">
           {% if word.image.url %}
-            <img class="little_word_image" src="{{word.image.url}}" alt="{{word.image.url}}">
+            <img class="img_panel" src="{{word.image.url}}" alt="{{word.image.url}}">
           {% else %}
-            <img class="little_word_image" src="{% url 'static/images/generic-avatar.png' %}" alt="generic">
+            <img class="img_panel" src="{% url 'static/images/generic-avatar.png' %}" alt="generic">
           {% endif %}
         </a>
-        <a href="{% url 'words:deleteword' object.master.slug object.pk word.pk %}"><h4>Delete word</h4></a>
+        <footer style="padding:3px;">
+          <a href="{% url 'words:deleteword' object.master.slug object.pk word.pk %}" class="btn btn-secondary">Delete word</a>
+        </footer>
+
       </article>
     {% endfor %}
-  <article class="panel">
-    <h3>New Word</h3>
-    <a href="{% url 'words:newword' object.master.slug object.pk %}">
-      <img class="little_word_image" src="{% static '/images/generic-avatar.png' %}" alt="new word">
-    </a>
-  </article>
+    <article class="panel">
+      <h3>New Word</h3>
+      <a href="{% url 'words:newword' object.master.slug object.pk %}">
+        <img class="img_panel" src="{% static '/images/generic-avatar.png' %}" alt="new word">
+      </a>
+    </article>
+  </div>
 </section>
 
 {% endblock %}

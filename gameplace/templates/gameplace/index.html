@@ -15,26 +15,29 @@
   <img src="object.avatar.url" alt="avatar">
 </article>
 
-<section class="galery">
-  <h2>Avatars</h2>
+<section>
+  <header>
+    <h2>Avatars</h2>
+  </header>
+  <div class="galery">
+    {% for master in masters %}
 
-  {% for master in masters %}
+      <article class="panel">
 
+        <h3>{{master.nickname}}</h3>
+        <a href="{% url 'gameplace:master' master.slug %}">
+          <img src="{{master.avatar.url}}" alt="{{master.nickname}}" class="img_panel">
+        </a>
+      </article>
+
+    {% endfor %}
     <article class="panel">
-
-      <h3>{{master.nickname}}</h3>
-      <a href="{% url 'gameplace:master' master.slug %}">
-        <img src="{{master.avatar.url}}" alt="{{master.nickname}}">
+      <h3>New Avatar</h3>
+      <a href="{% url 'gameplace:newmaster' %}">
+        <img src="{% static '/images/generic-avatar.png' %}" alt="new avatar" class="img_panel">
       </a>
     </article>
-
-  {% endfor %}
-  <article class="panel">
-    <h3>New Avatar</h3>
-    <a href="{% url 'gameplace:newmaster' %}">
-      <img src="{% static '/images/generic-avatar.png' %}" alt="new avatar">
-    </a>
-  </article>
+  </div>
 </section>
 
 {% endblock %}

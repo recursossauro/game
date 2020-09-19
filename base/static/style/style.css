@@ -1,8 +1,13 @@
+@font-face {
+  font-family: comic;
+  src: url('../fonts/comic-sans-ms-4.ttf');
+}
 
 body {
  /*background-attachment: fixed;*/
  background-color: black;
  color: pink;
+ font-family: comic;
 }
 
 body a {
@@ -37,14 +42,18 @@ header h1, h2, h3 {
  text-align: center;
 }
 
+footer {
+  margin-top: auto;
+}
+
 .little_img {
     max-width: 50%;
     max-height: 200px;
 }
 
 .little_word_image {
-  max-width: 30px;
-  max-height: 40px;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .micro_img {
@@ -65,26 +74,30 @@ header h1, h2, h3 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 920px;
-  max-width: 90%;
+  min-width: 225px;
+  width: 914px;
+  max-width: 100%;
+  align-content: center;
 }
 
-.galery .panel {
-  width:300px;
-  height: 100%;
-  display: inline-block;
-  padding: 5px 15px;
+.panel {
+  width:225px;
+  height: 400px;
+  display: inline-grid;
+  text-align: center;
+  border: solid 1px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+  margin-bottom: 3px;
 }
 
-.panel img {
+.panel h3 {
 
-  width: auto;
-  max-width: 290px;
-  max-height: 100%;
-  min-width: 200px;
+}
+
+.img_panel {
+  max-width: 95%;
+  max-height: 300px;
   margin-left: auto;
   margin-right: auto;
 }
