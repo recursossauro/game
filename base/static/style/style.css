@@ -1,8 +1,13 @@
+@font-face {
+  font-family: comic;
+  src: url('../fonts/comic-sans-ms-4.ttf');
+}
 
 body {
  /*background-attachment: fixed;*/
  background-color: black;
  color: pink;
+ font-family: comic;
 }
 
 body a {
