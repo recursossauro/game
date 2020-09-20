@@ -52,7 +52,7 @@
     <table>
       <tr>
         {% for letter in word.word %}
-          <td><span id="{{letter}}" class="font inner target">{{letter}}</span></td>
+          <td><span id="{{letter}}" class="font inner target"><script>document.write('{{target}}'[{{forloop.counter0}}]);</script></span></td>
         {% endfor %}
       </tr>
     </table>

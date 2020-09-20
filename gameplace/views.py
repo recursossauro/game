@@ -230,11 +230,25 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
         elif (words.count()==1):
             word = words[0]
 
+        # get Rights number to word
+        try:
+            rights = word.right_set.get(user=self.request.user).number
+        except Exception as e:
+            rights = 0
+
         context = super(DragLetterFormView, self).get_context_data(**kwargs)
         context['title'] = 'Drag Letter'
 
         context['gamer'] = self.gamer
         context['word']  = word
+
+        target = word.word
+
+        if (rights>5):
+            target = '☺' + target[1:]
+
+        context['target'] = target
+
 
         if (word==''):
             context['randomWord'] = ''
