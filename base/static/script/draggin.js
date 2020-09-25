@@ -186,6 +186,19 @@ document.body.onload = function() {
 
     }
 
+    function removeListners(letter) {
+      letter.removeEventListener("mousedown", drag);
+      letter.removeEventListener("touchstart", handleTouch);
+    }
+
+    function getOffset(el) {
+      const rect = el.getBoundingClientRect();
+      return {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY
+      };
+    }
+
     function detectHitTarget(draggedElement) {
       // Detect a hit the target when the center of the target caracter is s px size
       // distant of the center of the dragged caracter.
@@ -200,27 +213,37 @@ document.body.onload = function() {
       right = false;
       for (i=0; i<targets.length; i++) {
         if (targets[i].id == draggedElement.id) {
-          // Calculate the center x and y from the target
-          xCenterTarget = targets[i].getBoundingClientRect().left + (targets[i].getBoundingClientRect().right-targets[i].getBoundingClientRect().left)/2;
-          yCenterTarget = targets[i].getBoundingClientRect().top + (targets[i].getBoundingClientRect().bottom-targets[i].getBoundingClientRect().top)/2;
-          // Calculate the center x and y from the dragged element
-          xCenterDragged = draggedElement.getBoundingClientRect().left + (draggedElement.getBoundingClientRect().right-draggedElement.getBoundingClientRect().left)/2;
-          yCenterDragged = draggedElement.getBoundingClientRect().top + (draggedElement.getBoundingClientRect().bottom-draggedElement.getBoundingClientRect().top)/2;
 
-          distance = Math.sqrt(Math.pow((xCenterTarget-xCenterDragged),2)+Math.pow((yCenterTarget-yCenterDragged),2))
+          // Collision detection
+          if (
+              targets[i].getBoundingClientRect().left  < draggedElement.getBoundingClientRect().right &&
+              targets[i].getBoundingClientRect().right > draggedElement.getBoundingClientRect().left &&
+              targets[i].getBoundingClientRect().top   < draggedElement.getBoundingClientRect().bottom &&
+              targets[i].getBoundingClientRect().bottom > draggedElement.getBoundingClientRect().top
+            )  {
 
-          // Verify if the distance match
-          if (distance <= s) {
-            // stop the loop for
-            i = targets.length;
-            right = true;
+              right = true;
+
+              // Efect looks like the dragged letter fits perfectally on the target.
+              draggedElement.style.visibility = "hidden";
+              targets[i].classList.remove("inner");
+
+              // Change character masked into the right letter.
+              targets[i].parentElement.innerHTML=targets[i].id;
+
+
+
+              removeListners(draggedElement);
+
+
+              // stop the loop for
+              i = targets.length;
           }
         }
       }
       if (right) {
         numRight++;
-        if (numRight>=numRightToFinish) complited();
-        else right_audio.play();
+        if (numRight>=numRightToFinish) complited(); else right_audio.play();
       } else {
         wrong_audio.play();
         // Restore initial position of the element dragged

@@ -47,12 +47,11 @@
   <div class="img_square">
 
   </div>
-  <img src="{{word.image.url}}" alt="">
   {% if word %}
     <table>
       <tr>
         {% for letter in word.word %}
-          <td><span id="{{letter}}" class="font inner target">{{letter}}</span></td>
+          <td><span id="{{letter}}" class="font inner target"><script>document.write('{{target}}'[{{forloop.counter0}}]);</script></span></td>
         {% endfor %}
       </tr>
     </table>
@@ -79,7 +78,7 @@
       <a href="{% url 'indexredirect' %}" class="button">Click here to return.</a>
     </div>
   {% endif %}
-
+  <img src="{{word.image.url}}" alt="">
 </section>
 
 {% endblock %}
