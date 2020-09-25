@@ -1,4 +1,4 @@
-2º)
+3º)
 dragletters - the set of letters options never had fewer than 5 letters.
 
 backlog
@@ -34,3 +34,7 @@ account complited words on Drag letters
 
 2º
 Letters first letter masked with FACE on words complited most 5 times.
+dragletters - use collision detection instead min distânce.
+dragletters - Bug correction - in the botton of the firefox browser, the address bar over hide the letters.
+dragletters - when the right collision occurrs, the letter lost the capability of be draggable.
+dragletters - when the right collision occurrs, the letters fits perfectally in the target.

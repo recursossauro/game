@@ -47,7 +47,6 @@
   <div class="img_square">
 
   </div>
-  <img src="{{word.image.url}}" alt="">
   {% if word %}
     <table>
       <tr>
@@ -79,7 +78,7 @@
       <a href="{% url 'indexredirect' %}" class="button">Click here to return.</a>
     </div>
   {% endif %}
-
+  <img src="{{word.image.url}}" alt="">
 </section>
 
 {% endblock %}
