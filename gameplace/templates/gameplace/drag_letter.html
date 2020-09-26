@@ -36,74 +36,29 @@
   }
 
 </style>
-<script type="text/javascript">
 
-  var right_audio = new Audio("{% static 'sounds/right.mp3' %}");
-  var wrong_audio = new Audio("{% static 'sounds/wrong.mp3' %}");
-  var completed_audio = new Audio("{% static 'sounds/completed.mp3' %}");
+<script type="text/javascript" src="{% static "script/draggin.js" %}"></script>
 
-
-  var word    = '{{word}}';
-  var wording = 0;
-
-
-  function allowDrop(ev) {
-    ev.preventDefault();
-  }
-
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-
-  function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    encaixe = ev.target.innerHTML;
-    letra   = document.getElementById(data).innerHTML;
-
-    if (encaixe == letra) {
-      ev.target.className="font";
-      document.getElementById(data).innerHTML="";
-      wording ++;
-      if (wording==word.length) {
-        complited();
-      } else {
-        right_audio.play();
-      }
-    } else {
-      wrong_audio.play();
-    }
-
-  }
-
-  function complited() {
-    completed_audio.play();
-    alert('Congratulations! You have commplited the word {{word.word}}');
-    document.getElementById("drag_letters_form").submit();
-
-  }
-
-</script>
 <header>
   <h3>Drag Letters</h3>
 </header>
 <section>
+  <span style="display:none" id='word'>{{word.word}}</span>
   <div class="img_square">
 
   </div>
-  <img src="{{word.image.url}}" alt="">
   {% if word %}
     <table>
       <tr>
         {% for letter in word.word %}
-          <td><span id="caracter{{ forloop.counter }}" ondrop="drop(event)" ondragover="allowDrop(event)" class="font inner">{{letter}}</span></td>
+          <td><span id="{{letter}}" class="font inner target"><script>document.write('{{target}}'[{{forloop.counter0}}]);</script></span></td>
         {% endfor %}
       </tr>
     </table>
     <table>
       <tr>
         {% for letter in randomWord %}
-          <td><span class="font" id="drag{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">{{letter}}</span></td>
+          <td><span class="font draggable" id="{{letter}}">{{letter}}</span></td>
         {% endfor %}
       </tr>
 
@@ -123,7 +78,7 @@
       <a href="{% url 'indexredirect' %}" class="button">Click here to return.</a>
     </div>
   {% endif %}
-
+  <img src="{{word.image.url}}" alt="">
 </section>
 
 {% endblock %}

@@ -35,4 +35,4 @@ class Right(models.Model):
         unique_together = [['user', 'gamer', 'word']]
 
     def __str__(self):
-        return self.word + " " + str(self.number)
+        return self.word.word + " " + str(self.number)

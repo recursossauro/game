@@ -1,0 +1,8 @@
+import dropbox
+dbx = dropbox.Dropbox('Tr9AIL2HTJkAAAAAAAAAAV355M6PnBsyiPqas47gAYInjJ6WB55-npbkep7kz9Xk')
+dbx.users_get_current_account()
+for entry in dbx.files_list_folder('').entries:
+    print(entry.name)
+dbx.files_upload(b"creating directory media.", '/media/default')
+for entry in dbx.files_list_folder('').entries:
+    print(entry.name)
