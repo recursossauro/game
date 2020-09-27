@@ -246,6 +246,27 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
 
         if (rights>5):
             target = '☺' + target[1:]
+            if (rights >= 8):
+                facesNumber = int(rights/3)
+                characterNumber = len(target[1:])
+                if (facesNumber>characterNumber): facesNumber = characterNumber
+                characterNumber = characterNumber-facesNumber
+                mask = (''.join(('1') for i in range(facesNumber)))+(''.join(('0') for i in range(characterNumber)))
+                mask = list(mask)
+                random.shuffle(mask)
+                mask = ''.join(mask)
+                mask = '1' + mask
+                aux = ''
+                for i in range(len(target)):
+                    if (mask[i:i+1]=='0'):
+                        aux = aux+target[i:i+1]
+                    else:
+                        aux = aux+'☺'
+
+                target = aux
+
+
+
 
         context['target'] = target
 
