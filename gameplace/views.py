@@ -244,10 +244,18 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
 
         target = word.word
 
-        if (rights>5):
+        """
+        Rules for the Target
+        -----
+            1. Dragletter show each letters of the word to be a target;
+            2. If a gamer has right number equal 5 for a word dragletters show the word with an simbol insted first letter.
+            3. After that, for each plus 3 plus right number for a word, the dragletter add an simbol on a random position on the word.
+        """
+
+        if (rights>=5):
             target = '☺' + target[1:]
             if (rights >= 8):
-                facesNumber = int(rights/3)
+                facesNumber = int((rights-5)/3)
                 characterNumber = len(target[1:])
                 if (facesNumber>characterNumber): facesNumber = characterNumber
                 characterNumber = characterNumber-facesNumber
