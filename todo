@@ -4,8 +4,17 @@
 backlog
 =================
 
-
 ------------------------------------------------------
+Master add another master to the user
+------------------------------------------------------
+Master add a existent gamer/user
+Rules
+  1. the gamer/user is disabled.
+  2. the creator master can see the request for hability
+  3. The master creator can enable the user.
+how, in the gamer person create a user fk created by. 
+------------------------------------------------------
+
 Game Kake Wars
 Kake Wars, not all twins want play this war.
 The twins that has one caracter from the word wants play, so you myth shoot kake on her/his face, but do this quick,
