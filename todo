@@ -1,10 +1,7 @@
-3º) Bugfix
-Person, Master, Gamer photo or avatar url null, treat this on htmls.
-
-
 backlog
 =================
-
+Bugfix - treat the no file image problem.
+------------------------------------------
 do the image to word be not null and not blank in the Model
 ------------------------------------------------------------
 Master add another master to the user
@@ -57,3 +54,6 @@ Rules for the Target
   1. Dragletter show each letters of the word to be a target;
   2. If a gamer has right number equal 5 for a word dragletters show the word with an simbol insted first letter.
   3. After that, for each plus 3 plus right number for a word, the dragletter add an simbol on a random position on the word.
+
+4º Bugfix
+Person, Master, Gamer photo or avatar url null, treat this on htmls.
