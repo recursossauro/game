@@ -12,7 +12,11 @@
 </header>
 <article class="">
   <p>{{object.name}}</p>
-  <img src="object.avatar.url" alt="avatar">
+  {% if object.photo.url != None %}
+    <img src="{{object.photo.url}}" alt="avatar">
+  {% else %}
+    <img src="{% static '/images/generic-avatar.png' %}" alt="avatar" class="img_panel">
+  {% endif %}
 </article>
 
 <section>
@@ -26,7 +30,11 @@
 
         <h3>{{master.nickname}}</h3>
         <a href="{% url 'gameplace:master' master.slug %}">
+          {% if master.avatar.url != None %}
           <img src="{{master.avatar.url}}" alt="{{master.nickname}}" class="img_panel">
+          {% else %}
+          <img src="{% static '/images/generic-avatar.png' %}" alt="{{master.nickname}}" class="img_panel">
+          {% endif %}
         </a>
       </article>
 

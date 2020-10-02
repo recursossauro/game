@@ -13,7 +13,7 @@
 <section>
   <article class="">
 
-    <img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">
+    {% if object.avatar.url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">{% endif %}
 
     <ul>
       <li><a href="{% url 'gameplace:updatemaster' object.slug %}">Edit</a></li>

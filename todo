@@ -1,10 +1,12 @@
-3º)
+3º) Bugfix
+Person, Master, Gamer photo or avatar url null, treat this on htmls.
 
 
 backlog
 =================
 
-------------------------------------------------------
+do the image to word be not null and not blank in the Model
+------------------------------------------------------------
 Master add another master to the user
 ------------------------------------------------------
 Master add a existent gamer/user
@@ -12,7 +14,7 @@ Rules
   1. the gamer/user is disabled.
   2. the creator master can see the request for hability
   3. The master creator can enable the user.
-how, in the gamer person create a user fk created by. 
+how, in the gamer person create a user fk created by.
 ------------------------------------------------------
 
 Game Kake Wars
@@ -27,7 +29,8 @@ game complete a word with the right letter.
 --------------------------------------------
 game link the image to the word.
 ------------------------------------------
-
+Person, Master, Gamer photo or avatar url null, use default url for all, a generic image.
+-------------------------------------------------------------------------------------------
 
 
 Concluded

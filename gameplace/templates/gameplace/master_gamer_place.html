@@ -8,13 +8,13 @@
 
 {% block content %}
 <header>
-    <h3><img class="micro_img" src="{{ object.master.avatar.url }}" alt=""> {{ object.master.nickname }}</h3>
+    <h3>{% if object.master.avatar.url != None %}<img class="micro_img" src="{{ object.master.avatar.url }}" alt="">{%endif%} {{ object.master.nickname }}</h3>
   <h3>{{object.nickname}}'s Place</h3>
 </header>
 <section>
   <article class="">
 
-    <img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">
+    {% if object.avatar.url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">{%else%}<img class="avatar_img" src="{% url 'static/images/generic-avatar.png' %}" alt="generic">{%endif%}
 
     <ul>
       <li><a href="{% url 'gameplace:games' object.pk %}">Play</a></li>

@@ -240,6 +240,12 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
         context['title'] = 'Drag Letter'
 
         context['gamer'] = self.gamer
+
+
+        if (word==''):
+            context['randomWord'] = ''
+            return context
+
         context['word']  = word
 
         target = word.word
@@ -279,9 +285,7 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
         context['target'] = target
 
 
-        if (word==''):
-            context['randomWord'] = ''
-            return context
+
 
         randomList = list(word.word)
         random.shuffle(randomList)
