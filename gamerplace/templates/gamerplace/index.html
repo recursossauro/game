@@ -10,7 +10,7 @@
 </header>
 <article class="">
   <h4>{{object.nickname}}</h4>
-  {% if object.avatar.url!=None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="">{%e ndif %}
+  {% if object.avatar.url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="">{% endif %}
   <ul>
     <li><a href="{% url 'gameplace:dragletter' object.pk %}">Play</a></li>
   </ul>
