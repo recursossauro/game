@@ -1,9 +1,8 @@
-backlog
-=================
+5º
+Do a best date fill.
+----------------------
 Bugfix - treat the no file image problem.
 ------------------------------------------
-do the image to word be not null and not blank in the Model
-------------------------------------------------------------
 Master add another master to the user
 ------------------------------------------------------
 Master add a existent gamer/user
@@ -13,6 +12,15 @@ Rules
   3. The master creator can enable the user.
 how, in the gamer person create a user fk created by.
 ------------------------------------------------------
+Put an demo game to non- logged
+------------------------------------------------------
+write the description for the plataform
+------------------------------------------------
+
+backlog
+=================
+do the image to word be not null and not blank in the Model
+------------------------------------------------------------
 
 Game Kake Wars
 Kake Wars, not all twins want play this war.
@@ -28,7 +36,10 @@ game link the image to the word.
 ------------------------------------------
 Person, Master, Gamer photo or avatar url null, use default url for all, a generic image.
 -------------------------------------------------------------------------------------------
-
+Create an news plataform to comunicate all about the Gustavo's Games
+-----------------------------------------------------------------------
+Put an e-mail or form to report bugs and suggestions.
+------------------------------------------------------
 
 Concluded
 1º
