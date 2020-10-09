@@ -48,7 +48,7 @@ class PersonCreateView (LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(PersonCreateView, self).get_context_data(**kwargs)
-        ctx['title'] = 'Por favor, complete o Cadastro'
+        ctx['title'] = 'Please complete the Registration'
         return ctx
 
     def form_valid(self, form):

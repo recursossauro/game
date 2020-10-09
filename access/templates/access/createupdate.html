@@ -21,7 +21,11 @@
         <div class="form-group{% if field.errors %} has-error {% endif %}">
           <label for="{{ field.auto_id }}" class="control-label">{{ field.label }}</label>
           <div class="">
-            {% render_field field class="form-control" %}
+            {% if field.auto_id == 'id_birth' %}
+              {% render_field field class="form-control" type="date" %}
+            {% else %}
+              {% render_field field class="form-control" %}
+            {%endif%}
             {% for error in field.errors %}
               <span class="help-block">{{ error }}</span>
             {% endfor %}
