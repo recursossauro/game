@@ -1,10 +1,8 @@
-5º
-Do a best date fill.
-----------------------
-Bugfix - treat the no file image problem.
-------------------------------------------
+6º
 Master add another master to the user
 ------------------------------------------------------
+Bugfix - treat the no file image problem.
+------------------------------------------
 Master add a existent gamer/user
 Rules
   1. the gamer/user is disabled.
@@ -15,6 +13,8 @@ how, in the gamer person create a user fk created by.
 Put an demo game to non- logged
 ------------------------------------------------------
 write the description for the plataform
+------------------------------------------------
+put add word first
 ------------------------------------------------
 
 backlog
@@ -41,7 +41,10 @@ Create an news plataform to comunicate all about the Gustavo's Games
 Put an e-mail or form to report bugs and suggestions.
 ------------------------------------------------------
 
+================================================================================
 Concluded
+================================================================================
+
 1º
 CRUDE user
 CRUDE person
@@ -68,3 +71,17 @@ Rules for the Target
 
 4º Bugfix
 Person, Master, Gamer photo or avatar url null, treat this on htmls.
+
+5º
+Do a best date fill.
+----------------------
+Master has gamers not created for your self.
+---------------------------------------------
+the second Master can see this gamers.
+----------------------------------------------
+the second Master can create, update and delete Word.
+------------------------------------------------------
+the second Master can see the game Drag Letters
+------------------------------------------------
+the second Master can play Drag Letters
+---------------------------------------

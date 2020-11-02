@@ -4,6 +4,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import get_user_model, update_session_auth_hash
+from django.db.models import Q
 
 from access.forms import UserAdminCreationForm
 
@@ -64,7 +65,8 @@ class MasterDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MasterDetailView, self).get_context_data(**kwargs)
-        gamers = Gamer.objects.filter(master = self.object)
+        gamers = self.object.getGamers()
+
         context['gamers'] = gamers
         return context
 
@@ -165,7 +167,7 @@ class MasterGamerDetailView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         master = get_object_or_404(Master, user=self.request.user, slug=self.kwargs['slugmaster'])
-        return get_object_or_404(Gamer, master=master, pk=self.kwargs['pk'])
+        return get_object_or_404(master.getGamers(), pk=self.kwargs['pk'])
 
 
 class MasterGamerDeleteView(LoginRequiredMixin, DeleteView):
@@ -190,17 +192,30 @@ class GamesDetailView(LoginRequiredMixin, DetailView):
             except:
                 # the master can play the games like he is one of his gamers,
                 # but will be registered on his user
-                return get_object_or_404(Gamer, master__user=self.request.user, pk=self.kwargs['pk'])
+                return get_object_or_404(
+                    Gamer.objects.filter(
+                        Q(master__user=self.request.user) |
+                        Q(othersMasters__user=self.request.user)
+                    ),
+                    pk=self.kwargs['pk']
+                )
 
 def getGamer(user, pk):
     # get the gamer only if the user is the user gamer or the user master of the gamer.
     try:
         gamer = Gamer.objects.get(user=user, pk=pk)
     except:
+        print('\n\n\n1\n\n\n')
         # the master can play the games like he is one of his gamers,
         # but will be registered on his user
-        gamer =  get_object_or_404(Gamer, master__user=user, pk=pk)
-
+        gamer =  get_object_or_404(
+            Gamer.objects.filter(
+                Q(master__user=user) |
+                Q(othersMasters__user=user)
+            ),
+            pk=pk
+        )
+        print('\n\n\n2\n\n\n')
     return gamer
 
 class DragLetterFormView(LoginRequiredMixin, FormView):

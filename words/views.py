@@ -14,7 +14,7 @@ from gameplace.models import Master, Gamer
 def getGamer(user, slugmaster, pkgamer):
     master = get_object_or_404(Master, user=user, slug=slugmaster)
 
-    return get_object_or_404(Gamer, master=master, pk=pkgamer)
+    return get_object_or_404(master.getGamers(), pk=pkgamer)
 
 class WordListView(ListView, LoginRequiredMixin):
     model = Word
