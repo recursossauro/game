@@ -8,13 +8,17 @@
 
 {% block content %}
 <header>
-    <h3>{% if object.master.avatar.url != None %}<img class="micro_img" src="{{ object.master.avatar.url }}" alt="">{%endif%} {{ object.master.nickname }}</h3>
+    <h3>{% if object.master.avatar.url != None and object.master.get_avatar_url%}<img class="micro_img" src="{{ object.master.avatar.url }}" alt="">{%endif%} {{ object.master.nickname }}</h3>
   <h3>{{object.nickname}}'s Place</h3>
 </header>
 <section>
   <article class="">
 
-    {% if object.avatar.url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">{%else%}<img class="avatar_img" src="{% url 'static/images/generic-avatar.png' %}" alt="generic">{%endif%}
+    {% if object.avatar.url != None and object.get_avatar_url %}
+      <img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">
+    {%else%}
+      <img class="avatar_img" src="{% static 'images/generic-avatar.png' %}" alt="generic">
+    {%endif%}
 
     <ul>
       <li><a href="{% url 'gameplace:games' object.pk %}">Play</a></li>
@@ -45,14 +49,20 @@
     <h3>Words</h3>
   </header>
   <div class="galery">
+    <article class="panel">
+      <h3>New Word</h3>
+      <a href="{% url 'words:newword' view.kwargs.slugmaster object.pk %}">
+        <img class="img_panel" src="{% static '/images/generic-avatar.png' %}" alt="new word">
+      </a>
+    </article>
     {% for word in object.word_set.all %}
       <article class="panel">
         <h3>{{word}}</h3>
         <a href="{% url 'words:updateword' view.kwargs.slugmaster object.pk word.pk %}">
-          {% if word.image.url %}
-            <img class="img_panel" src="{{word.image.url}}" alt="{{word.image.url}}">
+          {% if word.image.url != None and word.get_image_url %}
+            <img class="img_panel" src="{{word.image.url}}" alt="{{word}}">
           {% else %}
-            <img class="img_panel" src="{% url 'static/images/generic-avatar.png' %}" alt="generic">
+            <img class="img_panel" src="{% static '/images/generic-avatar.png' %}" alt="generic">
           {% endif %}
         </a>
         <footer style="padding:3px;">
@@ -61,12 +71,6 @@
 
       </article>
     {% endfor %}
-    <article class="panel">
-      <h3>New Word</h3>
-      <a href="{% url 'words:newword' view.kwargs.slugmaster object.pk %}">
-        <img class="img_panel" src="{% static '/images/generic-avatar.png' %}" alt="new word">
-      </a>
-    </article>
   </div>
 </section>
 

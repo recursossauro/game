@@ -1,7 +1,8 @@
-6º
+7º
 Master add another master to the user
 ------------------------------------------------------
 Bugfix - treat the no file image problem.
+solve: https://code.djangoproject.com/ticket/11228
 ------------------------------------------
 Master add a existent gamer/user
 Rules
@@ -14,8 +15,7 @@ Put an demo game to non- logged
 ------------------------------------------------------
 write the description for the plataform
 ------------------------------------------------
-put add word first
-------------------------------------------------
+
 
 backlog
 =================
@@ -88,3 +88,14 @@ the second Master can see the game Drag Letters
 ------------------------------------------------
 the second Master can play Drag Letters
 ---------------------------------------
+
+6º
+master_gamer_place_word.html: add to all images {% if <object>.<img field>.url != None %};
+master_gamer_place_word.html: put add word first;
+master_gamer_place_word.html: corrected static urls;
+master_gamer_place_word.html: change to all images the if to {% if <object>.<img field>.url != None and <object>.get_<img field name>_url %}
+words models: created method get_image_url to solve the dropbox no file exists problem;
+gameplace models: created method get_avatar_url for all models to solve the dropbox no file exists problem
+
+
+------------------------------------------------

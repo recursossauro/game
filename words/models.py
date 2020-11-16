@@ -2,6 +2,9 @@ from django.db import models
 from gameplace.models import Master, Gamer
 from django.conf import settings
 
+from dropbox.exceptions import ApiError
+import traceback
+
 class Word(models.Model):
 
     gamer  = models.ForeignKey(Gamer, verbose_name='Gamer', on_delete=models.CASCADE, null=True, blank=True)
@@ -15,6 +18,14 @@ class Word(models.Model):
     class Meta:
         verbose_name        = 'Word'
         verbose_name_plural = 'Words'
+
+    def get_image_url(self):
+        try:
+            return self.image.url
+        except ApiError as e:
+            traceback.print_exc()
+            return None
+
 
     def __str__(self):
         return self.word

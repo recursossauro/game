@@ -153,7 +153,6 @@ MEDIA_URL = '/media/'
 
 # AUTH
 
-# AUTH_USER_MODEL = 'Zugriff.User'
 LOGIN_URL = 'access:login'
 LOGIN_REDIRECT_URL = 'indexredirect'
 LOGOUT_URL = 'access:logout'

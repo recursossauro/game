@@ -2,6 +2,9 @@ from django.db import models
 from django.conf import settings
 from django.db.models import Q
 
+from dropbox.exceptions import ApiError
+import traceback
+
 class Master(models.Model):
     user      = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Usuário', on_delete=models.CASCADE)
     slug      = models.SlugField('Slug', max_length=200, default='slug')
@@ -22,6 +25,13 @@ class Master(models.Model):
             Q(master = self) |
             Q(gamermaster__master = self, gamermaster__authorized = authorized)
         )
+
+    def get_avatar_url(self):
+        try:
+            return self.avatar.url
+        except ApiError as e:
+            traceback.print_exc()
+            return None
 
     def __str__(self):
         return self.nickname
@@ -45,6 +55,13 @@ class Gamer(models.Model):
     def getRights(self):
         return self.right_set.filter(user=self.user)
 
+    def get_avatar_url(self):
+        try:
+            return self.avatar.url
+        except ApiError as e:
+            traceback.print_exc()
+            return None
+
     def __str__(self):
         return self.nickname
 
@@ -61,6 +78,13 @@ class Fan(models.Model):
     class Meta:
         verbose_name        = 'Fan'
         verbose_name_plural = 'Fans'
+
+    def get_avatar_url(self):
+        try:
+            return self.avatar.url
+        except ApiError as e:
+            traceback.print_exc()
+            return None
 
     def __str__(self):
         return self.nickname
