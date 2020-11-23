@@ -205,7 +205,6 @@ def getGamer(user, pk):
     try:
         gamer = Gamer.objects.get(user=user, pk=pk)
     except:
-        print('\n\n\n1\n\n\n')
         # the master can play the games like he is one of his gamers,
         # but will be registered on his user
         gamer =  get_object_or_404(
@@ -215,7 +214,6 @@ def getGamer(user, pk):
             ),
             pk=pk
         )
-        print('\n\n\n2\n\n\n')
     return gamer
 
 class DragLetterFormView(LoginRequiredMixin, FormView):
