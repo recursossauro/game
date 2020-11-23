@@ -78,7 +78,9 @@
       <a href="{% url 'indexredirect' %}" class="button">Click here to return.</a>
     </div>
   {% endif %}
-  <img src="{{word.image.url}}" alt="">
+  {% if word.get_image_url != None %}
+    <img src="{{word.image.url}}" alt="">
+  {% endif %}
 </section>
 
 {% endblock %}

@@ -100,5 +100,7 @@ master_gamer_place_word.html: change to all images the if to {% if <object>.<img
 words models: created method get_image_url to solve the dropbox no file exists problem;
 gameplace models: created method get_avatar_url for all models to solve the dropbox no file exists problem
 
+7º
+update word with no image on Dropbox problem resolved.
 
 ------------------------------------------------

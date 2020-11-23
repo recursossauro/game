@@ -77,7 +77,7 @@ class WordUpadateView (UpdateView, LoginRequiredMixin):
     success_url = reverse_lazy('words:words')
 
     def get_object(self):
-        print('\n\n\n\get_object\n\n\n')
+
         gamer = getGamer(self.request.user, self.kwargs['slugmaster'], self.kwargs['pkgamer'])
         word = Word.objects.get(gamer=gamer, pk=self.kwargs['pk'])
         if (word.image != None):
@@ -88,6 +88,7 @@ class WordUpadateView (UpdateView, LoginRequiredMixin):
                 word.image = None
                 word.save()
             except ValueError as e:
+                # Prevent word.image == None
                 pass
 
         return word
