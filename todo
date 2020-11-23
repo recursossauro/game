@@ -1,8 +1,11 @@
 7º
 Master add another master to the user
 ------------------------------------------------------
-Bugfix - treat the no file image problem.
+Bugfix - treat the no file image problem for all images.
 solve: https://code.djangoproject.com/ticket/11228
+
+master_gamer_place_word.html: change or add {% if <object>.get_<image field>_url%} and changed static image url.
+
 ------------------------------------------
 Master add a existent gamer/user
 Rules

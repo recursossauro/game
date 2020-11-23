@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from dropbox.exceptions import ApiError
+import traceback
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
@@ -75,9 +77,20 @@ class WordUpadateView (UpdateView, LoginRequiredMixin):
     success_url = reverse_lazy('words:words')
 
     def get_object(self):
-
+        print('\n\n\n\get_object\n\n\n')
         gamer = getGamer(self.request.user, self.kwargs['slugmaster'], self.kwargs['pkgamer'])
-        return Word.objects.get(gamer=gamer, pk=self.kwargs['pk'])
+        word = Word.objects.get(gamer=gamer, pk=self.kwargs['pk'])
+        if (word.image != None):
+            try:
+                word.image.url
+            except ApiError as e:
+                traceback.print_exc()
+                word.image = None
+                word.save()
+            except ValueError as e:
+                pass
+
+        return word
 
     def get_context_data(self, **kwargs):
         ctx = super(WordUpadateView, self).get_context_data(**kwargs)

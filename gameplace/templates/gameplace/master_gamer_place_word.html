@@ -8,15 +8,19 @@
 
 {% block content %}
 <header>
-    <h3>{% if gamer.master.avatar.url != None %}<img class="micro_img" src="{{ gamer.master.avatar.url }}" alt="">{% else %}<img class="micro_img" src="{% static '/images/generic-avatar.png' %}" alt="">{% endif %} {{ gamer.master.nickname }}</h3>
+    <h3>{% if gamer.master.avatar.url != None and gamer.master.get_avatar_url %}<img class="micro_img" src="{{ gamer.master.avatar.url }}" alt="">{% else %}<img class="micro_img" src="{% static '/images/generic-avatar.png' %}" alt="">{% endif %} {{ gamer.master.nickname }}</h3>
   <h3>{{gamer.nickname}}'s Place</h3>
 </header>
 <section>
   <article class="">
-    {% if object.photo.url != None %}
+    {% if object.photo.url != None and object.get_photo_url %}
       <img src="{{object.photo.url}}" alt="avatar">
     {% else %}
-      <img class="avatar_img" src="{{gamer.avatar.url}}" alt="{{gamer.nickname}}">
+      {% if gamer.avatar.url != None and gamer.get_avatar_url %}
+        <img class="avatar_img" src="{{gamer.avatar.url}}" alt="{{gamer.nickname}}">
+      {% else %}
+        <img class="avatar_img" src="{% static '/images/generic-avatar.png' %}" alt="{{gamer.nickname}}">
+      {% endif %}
     {% endif %}
 
   </article>

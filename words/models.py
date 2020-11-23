@@ -5,6 +5,7 @@ from django.conf import settings
 from dropbox.exceptions import ApiError
 import traceback
 
+
 class Word(models.Model):
 
     gamer  = models.ForeignKey(Gamer, verbose_name='Gamer', on_delete=models.CASCADE, null=True, blank=True)
