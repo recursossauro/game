@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from dropbox.exceptions import ApiError
+import traceback
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, FormView
 from django.contrib.auth import get_user_model, update_session_auth_hash
@@ -62,7 +64,17 @@ class PersonUpadateView (LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('indexredirect')
 
     def get_object(self):
-        return Person.objects.get(user = self.request.user)
+        person = Person.objects.get(user = self.request.user)
+        if (person.photo != None):
+            try:
+                person.photo.url
+            except ApiError as e:
+                traceback.print_exc()
+                person.photo = None
+            except ValueError as e:
+                # Prevent person.image == None
+                pass
+        return person
 
     def get_context_data(self, **kwargs):
         ctx = super(PersonUpadateView, self).get_context_data(**kwargs)

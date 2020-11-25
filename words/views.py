@@ -86,7 +86,6 @@ class WordUpadateView (UpdateView, LoginRequiredMixin):
             except ApiError as e:
                 traceback.print_exc()
                 word.image = None
-                word.save()
             except ValueError as e:
                 # Prevent word.image == None
                 pass
