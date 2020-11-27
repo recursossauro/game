@@ -14,6 +14,9 @@ from access.models import Person
 from words.models import Word, Right
 from django.contrib.auth.models import User
 
+from dropbox.exceptions import ApiError
+import traceback
+
 import random
 
 class PersonDataileView(LoginRequiredMixin, DetailView):
@@ -77,7 +80,19 @@ class MasterUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('gameplace:index')
 
     def get_object(self):
-        return get_object_or_404(Master, user=self.request.user, slug = self.kwargs['slug'])
+        master = get_object_or_404(Master, user=self.request.user, slug = self.kwargs['slug'])
+
+        if (master.avatar != None):
+            try:
+                master.avatar.url
+            except ApiError as e:
+                traceback.print_exc()
+                master.avatar = None
+            except ValueError as e:
+                # Prevent master.image == None
+                pass
+
+        return master
 
     def get_context_data(self, **kwargs):
         context = super(MasterUpdateView, self).get_context_data(**kwargs)

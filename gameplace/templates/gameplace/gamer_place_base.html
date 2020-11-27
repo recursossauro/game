@@ -14,7 +14,7 @@
 <section>
   <article class="">
 
-    {% if gamer.avatar.url != None %}<img class="avatar_img" src="{{gamer.avatar.url}}" alt="{{gamer.nickname}}">{% endif %}
+    {% if gamer.get_avatar_url != None %}<img class="avatar_img" src="{{gamer.avatar.url}}" alt="{{gamer.nickname}}">{% endif %}
 
   </article>
 </section>
