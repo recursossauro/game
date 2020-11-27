@@ -136,13 +136,30 @@ class GamerCreateView(LoginRequiredMixin, CreateView):
 
 class GamerUpdateView(LoginRequiredMixin, UpdateView):
 
-    model = Gamer
+    #model = Gamer
     template_name = 'gameplace/createupdate.html'
     fields = ['nickname', 'avatar']
 
     def get_success_url(self):
         url = reverse_lazy('gameplace:master', kwargs = {'slug':self.kwargs['slugmaster']})
         return url
+
+    def get_object(self):
+
+        master = get_object_or_404(Master, user=self.request.user, slug = self.kwargs['slugmaster'])
+        gamer  = get_object_or_404(Gamer, master = master, pk=self.kwargs['pk'])
+
+        if (gamer.avatar != None):
+            try:
+                gamer.avatar.url
+            except ApiError as e:
+                traceback.print_exc()
+                gamer.avatar = None
+            except ValueError as e:
+                # Prevent master.image == None
+                pass
+
+        return gamer
 
 class GamerPasswordUpdateView(LoginRequiredMixin, FormView):
 

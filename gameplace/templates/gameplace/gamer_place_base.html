@@ -8,7 +8,7 @@
 
 {% block content %}
 <header>
-    <h3>{% if gamer.master.avatar.url != None %}<img class="micro_img" src="{{ gamer.master.avatar.url }}" alt="">{%endif%} {{ gamer.master.nickname }}</h3>
+    <h3>{% if gamer.master.get_avatar_url != None %}<img class="micro_img" src="{{ gamer.master.avatar.url }}" alt="">{%endif%} {{ gamer.master.nickname }}</h3>
   <h3>{{gamer.nickname}}'s Place</h3>
 </header>
 <section>

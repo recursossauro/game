@@ -13,7 +13,11 @@
 <section>
   <article class="">
 
-    {% if object.avatar.url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}">{% endif %}
+    {% if object.get_avatar_url != None %}
+      <img class="avatar_img" src="{{object.avatar.url}}" alt="{{object.nickname}}" class='img_panel'>
+      {% else %}
+        <img src="{% static 'images/generic-avatar.png' %}" alt="generic" class='img_panel'>
+    {% endif %}
 
     <ul>
       <li><a href="{% url 'gameplace:updatemaster' object.slug %}">Edit</a></li>
@@ -31,10 +35,10 @@
 
         <h3>{{gamer.nickname}}</h3>
         <a href="{% url 'gameplace:mastergamer' master.slug gamer.pk %}">
-          {% if gamer.avatar.url %}
+          {% if gamer.get_avatar_url != None %}
             <img src="{{gamer.avatar.url}}" alt="{{gamer.avatar.url}}" class='img_panel'>
           {% else %}
-            <img src="{% url 'static/images/generic-avatar.png' %}" alt="generic" class='img_panel' >
+            <img src="{% static 'images/generic-avatar.png' %}" alt="generic" class='img_panel' >
           {% endif %}
         </a>
       </article>
