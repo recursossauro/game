@@ -2,12 +2,7 @@
 Bugfix - Dropbox no image problem - gamerplace
 Master add another master to the user
 ------------------------------------------------------
-Bugfix - treat the no file image problem on Dropbox for all images.
-solve: https://code.djangoproject.com/ticket/11228
-    bug description
-  ===================
-  When a image is missing (directly deleted from Dropbox, or by an error not uploaded to there), the page retorn an error insted a generic image.
--------------------------------------------------------------------------------------------------------------------------------------------------
+
 Master add a existent gamer/user
 Rules
   1. the gamer/user is disabled.
@@ -106,3 +101,9 @@ update word with no image on Dropbox problem resolved.
 words, gameplace and gamerplace bug no image on Dropbox resolved.
 Added lines on results reports.
 ------------------------------------------------
+Bugfix - treat the no file image problem on Dropbox for all images.
+solve: https://code.djangoproject.com/ticket/11228
+    bug description
+  ===================
+  When a image is missing (directly deleted from Dropbox, or by an error not uploaded to there), the page retorn an error insted a generic image.
+-------------------------------------------------------------------------------------------------------------------------------------------------
