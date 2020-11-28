@@ -1,12 +1,13 @@
 7º
+Bugfix - Dropbox no image problem - gamerplace
 Master add another master to the user
 ------------------------------------------------------
-Bugfix - treat the no file image problem for all images.
+Bugfix - treat the no file image problem on Dropbox for all images.
 solve: https://code.djangoproject.com/ticket/11228
-
-master_gamer_place_word.html: change or add {% if <object>.get_<image field>_url%} and changed static image url.
-
-------------------------------------------
+    bug description
+  ===================
+  When a image is missing (directly deleted from Dropbox, or by an error not uploaded to there), the page retorn an error insted a generic image.
+-------------------------------------------------------------------------------------------------------------------------------------------------
 Master add a existent gamer/user
 Rules
   1. the gamer/user is disabled.
@@ -102,5 +103,6 @@ gameplace models: created method get_avatar_url for all models to solve the drop
 
 7º
 update word with no image on Dropbox problem resolved.
-
+words, gameplace and gamerplace bug no image on Dropbox resolved.
+Added lines on results reports.
 ------------------------------------------------

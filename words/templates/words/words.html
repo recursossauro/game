@@ -30,7 +30,7 @@
               {{obj.word}}
             </div>
           </div>
-          {% if obj.image.url != None %}
+          {% if obj.get_image_url != None %}
           <div class="roll">
             <div class="col-12">
               <img src="{{ obj.image.url }}" alt="" class="little_img">

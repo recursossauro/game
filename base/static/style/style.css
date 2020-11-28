@@ -91,15 +91,17 @@ footer {
   margin-bottom: 3px;
 }
 
-.panel h3 {
-
-}
-
 .img_panel {
   max-width: 95%;
   max-height: 300px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.line {
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+  border-bottom-color: gray;
 }
 
 /*

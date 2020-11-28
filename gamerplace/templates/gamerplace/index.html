@@ -10,13 +10,13 @@
 </header>
 <article class="">
   <h4>{{object.nickname}}</h4>
-  {% if object.avatar.url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="">{% endif %}
+  {% if object.get_avatar_url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="">{% endif %}
   <ul>
     <li><a href="{% url 'gameplace:dragletter' object.pk %}">Play</a></li>
   </ul>
 </article>
 <aside class="">
-  <div class="row">
+  <div class="row line">
     <div class="col-9">
       Word
     </div>
@@ -25,7 +25,7 @@
     </div>
   </div>
   {% for right in object.getRights %}
-    <div class="row">
+    <div class="row line">
       <div class="col-9">
         {{right.word}}
       </div>
