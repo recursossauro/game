@@ -70,12 +70,12 @@
       </ul>
     </div>
     <div class="nav-item">
-        <a id="logout" class="nav-link" href=" {% url 'access:logout' %} ">Sair</a>
+        <a id="logout" class="nav-link" href=" {% url 'access:logout' %} ">logout</a>
       {% else %}
-        <a id="login" class="nav-link" href="{% url 'access:login' %}">Entrar</a>
+        <a id="login" class="nav-link" href="{% url 'access:login' %}">login</a>
     </div>
     <div class="nav-item">
-        <a id="novousuario" class="nav-link" href="{% url 'access:newuser' %}">Novo</a>
+        <a id="novousuario" class="nav-link" href="{% url 'access:newuser' %}">New user</a>
       {% endif %}
     </div>
  </div>

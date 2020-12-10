@@ -15,6 +15,7 @@ from .views import (
     MasterGamerDeleteView,
     GamesDetailView,
     DragLetterFormView,
+    DragLetterTemplateView,
 )
 
 

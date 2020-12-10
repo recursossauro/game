@@ -23,11 +23,13 @@ from django.conf import settings
 
 from django.views.generic import TemplateView
 from base.views import IndexRedirectView
+from gameplace.views import DragLetterTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', TemplateView.as_view(template_name='index.html'), name='index'),
     path('', IndexRedirectView.as_view(), name='indexredirect'),
+    path('dragletterdemo', DragLetterTemplateView.as_view(), name='dragletterdemo'),
     path('access/',include(('access.urls','access'), namespace='access')),
     path('words/', include(('words.urls','words'), namespace='words')),
     path('gameplace/', include(('gameplace.urls','gameplace'),namespace='gameplace')),

@@ -354,3 +354,57 @@ class DragLetterFormView(LoginRequiredMixin, FormView):
 
     def get_success_url(self):
         return reverse_lazy('gameplace:dragletter', kwargs={'pk':self.kwargs['pk']})
+
+# Dummy Image class
+class _Image:
+    def __init__(self, image_url):
+        self.url = image_url
+
+# Dummy Word class
+class _Word:
+    def __init__(self, word, image_url):
+        self.word = word
+        self.image = _Image(image_url)
+
+    def get_image_url(self):
+        return self.image.url
+
+class DragLetterTemplateView(FormView):
+
+    template_name = 'gameplace/drag_letter.html'
+    form_class = WordIdForm
+
+
+    def get_context_data(self, **kwargs):
+
+        words = [
+            {
+                'word':_Word("butterfly",'static/images/dragletters/butterfly.jpeg'),
+                'target':'@u@ter@l@'
+            },
+            {
+                'word':_Word("carrot",'static/images/dragletters/cenoura.png'),
+                'target':'@ar@ot'
+            },
+            {
+                'word':_Word("bee",'static/images/dragletters/abelha.jpg'),
+                'target':'bee'
+            },
+        ]
+
+        i=random.randint(0,2)
+        word = words[i]
+
+        context = super(DragLetterTemplateView, self).get_context_data(**kwargs)
+
+        context['title'] = 'Drag Letter'
+        context['gamer'] = {'nickname':'Gamer'}
+        context['word']  = word['word']
+        context['target'] = word['target']
+
+        randomList = list(word['word'].word)
+        random.shuffle(randomList)
+        context['randomWord'] = ''.join(randomList)
+
+
+        return context

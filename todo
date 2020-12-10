@@ -1,20 +1,13 @@
-7º
-Bugfix - Dropbox no image problem - gamerplace
-Master add another master to the user
+9º
+Master add another existent master to the user
 ------------------------------------------------------
-
-Master add a existent gamer/user
+Master add a existent gamer/user by the master email and gamer name.
 Rules
   1. the gamer/user is disabled.
   2. the creator master can see the request for hability
   3. The master creator can enable the user.
 how, in the gamer person create a user fk created by.
 ------------------------------------------------------
-Put an demo game to non- logged
-------------------------------------------------------
-write the description for the plataform
-------------------------------------------------
-
 
 backlog
 =================
@@ -107,3 +100,10 @@ solve: https://code.djangoproject.com/ticket/11228
   ===================
   When a image is missing (directly deleted from Dropbox, or by an error not uploaded to there), the page retorn an error insted a generic image.
 -------------------------------------------------------------------------------------------------------------------------------------------------
+Bugfix - Dropbox no image problem - gamerplace
+------------------------------------------------
+8º
+Put an demo game to non- logged
+------------------------------------------------------
+write the description for the plataform
+------------------------------------------------
