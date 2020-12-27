@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: recursossauro@gmail.com
+Date: Thu, 17 Dec 2020 18:38:26 -0000
+Message-ID: <160823030647.12493.13251986637072063491@liberdade>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/access/password-reset-confirm/MQ/5mi-d7934eb80606d8965b5f
+
+Your username, in case you’ve forgotten: leonardo
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------

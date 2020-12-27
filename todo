@@ -1,4 +1,6 @@
 9º
+dragletter bug fix - if click on the letter space the game concider you put the right letter in this space.
+-----------
 My ilustrated dictionary - a kid can access his words and navigate by day.
 The kid can set his prefered word and see how many this word is prefered too.
 Master add another existent master to the user
@@ -109,3 +111,7 @@ Put an demo game to non- logged
 ------------------------------------------------------
 write the description for the plataform
 ------------------------------------------------
+
+9º
+Do a ugly (not realy ugly, only in the django's looks like instead game's looks like) reset password.
+----------

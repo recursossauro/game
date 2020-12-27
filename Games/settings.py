@@ -120,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -157,6 +157,19 @@ LOGIN_URL = 'access:login'
 LOGIN_REDIRECT_URL = 'indexredirect'
 LOGOUT_URL = 'access:logout'
 LOGOUT_REDIRECT_URL = 'indexredirect'
+
+# local mail sendding
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR + '/sent_emails'
+
+# gmail mail sendding
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'gustavosfungames@gmail.com'
+EMAIL_HOST_PASSWORD = 'fmozzeknskgjuqgn'
+
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())

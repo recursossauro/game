@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: serpentemkt@gmail.com
+Date: Thu, 24 Dec 2020 23:06:19 -0000
+Message-ID: <160885117991.2897.6698494140357811305@liberdade>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/access/password-reset-confirm/MzM/5mp-6e1af2e46c56b25b2edb
+
+Your username, in case you’ve forgotten: amanda
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
