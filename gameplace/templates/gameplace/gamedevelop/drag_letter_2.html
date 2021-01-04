@@ -1,0 +1,30 @@
+{% extends 'gameplace/gamer_place_base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}Drag Letter | {{block.super}} {% endblock %}
+
+{% block game %}
+
+  <script type="text/javascript" src='{% static "script/gamedevelop/dev.js" %}'></script>
+  <script type="text/javascript" src='{% static "script/gamedevelop/animation.js" %}'></script>
+  <script type="text/javascript" src='{% static "script/gamedevelop/keyboard.js" %}'></script>
+  <script type="text/javascript" src='{% static "script/gamedevelop/hero.js" %}'></script>
+  <script type="text/javascript" src='{% static "script/gamedevelop/wordImage.js" %}'></script>
+  <script type="text/javascript" src='{% static "script/gamedevelop/hero.js" %}'></script>
+
+  <canvas id="canvas" width="290" height="400"></canvas>
+
+  <p>Teste</p>
+
+  <script type="text/javascript">
+    document.body.onload = function() {
+      // Canvas e Context
+      var canvas = document.getElementById('canvas');
+      var drag = new DragLetters(document, canvas, {'imgSrc':'/{{ word.image.url|escapejs }}', 'target':'{{target}}'});
+   }
+  </script>
+
+{% endblock %}

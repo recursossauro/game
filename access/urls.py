@@ -21,6 +21,7 @@ urlpatterns = [
     path('updateuser/', UserUpdateView.as_view(), name='updateuser' ),
     path('updatepassword/', UserPaswordUpdateView.as_view(), name='updatepassword'),
 
+    # pasword
     path('password-reset/', PasswordResetView.as_view(email_template_name='access/password_reset_email.html' , success_url=reverse_lazy("access:password_reset_done")), name='passwordreset'),
     path("password-reset/done/", PasswordResetDoneView.as_view(), name="password_reset_done"),
     path("password-reset-confirm/<uidb64>/<token>", PasswordResetConfirmView.as_view(success_url=reverse_lazy("access:password_reset_complete")), name="password_reset_confirm"),
