@@ -1,7 +1,7 @@
 var WordImage = function(imgUrl, context, imageLoadingListner=null) {
   this.imgUrl = imgUrl;
   this.context = context;
-  this.isImageLoaded = 0;
+  this.hasImageToLoad = 1;
   this.imageLoadingListner = imageLoadingListner;
 
 }
@@ -19,7 +19,7 @@ WordImage.prototype = {
       th.height = th.width * factor;
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
-      th.isImageLoaded = 1;
+      
       if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
     };
 

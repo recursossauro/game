@@ -15,6 +15,7 @@ var Hero = function(context, keyboard, animation, imageLoadingListner=null) {
 }
 
 Hero.prototype = {
+
   loadImage: function() {
     this.image = new Image();
 
@@ -28,12 +29,26 @@ Hero.prototype = {
       th.height = th.width * factor;
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
-      th.isImageLoaded = 1;
+
       if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
 
     };
 
     this.image.src =  this.imgUrl;
+  },
+
+  rectanglesCollision: function() {
+
+     var rects =
+     [
+        {x: this.x, y: this.y, width: this.width, height: this.height},
+
+     ];
+     return rects;
+  },
+
+  collidedWith: function(sprite) {
+    if (sprite instanceof Letter) ;
   },
 
   'update': function() {
