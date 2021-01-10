@@ -17,13 +17,21 @@ DragLetters.prototype = {
     // load and draw image from Word.
     this.addObject(new WordImage(this.word.imgSrc, this.context, this));
 
+    // target
+    target = new Target(this.context, this.animation, 'F', true, this.acertou);
+    target.x = 100;
+    target.y = 10;
+    this.addObject(target);
+    this.collision.newSprite(target);
+
+
     // Hero
     hero = new Hero(this.context, new Keyboard(document), this.animation);
     this.addObject(hero);
     this.collision.newSprite(hero);
 
     // Letter
-    letter = new Letter(this.context, this.animation);
+    letter = new Letter(this.context, this.animation, null, 'F');
     this.addObject(letter);
     this.collision.newSprite(letter);
 
@@ -37,6 +45,11 @@ DragLetters.prototype = {
 
   imageLoaded: function() {
     this.animation.turnOn();
+  },
+
+  acertou: function() {
+    // Verifica no array de targets se existe algum target com is_hit == false;
+    // Se não existir o jogo acaba.
   },
 
   pause: function() {},

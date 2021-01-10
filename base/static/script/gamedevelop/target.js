@@ -1,23 +1,27 @@
-var Hero = function(context, keyboard, animation, imageLoadingListner=null) {
+var message = '';
+
+
+var Target = function(context, animation, letter='@', showLetter=true, rightTarget, imageLoadingListner=null) {
 
   this.context = context;
-  this.keyboard = keyboard;
   this.animation = animation;
   this.hasImageToLoad = true;
   this.imageLoadingListner = imageLoadingListner;
+  this.letter = letter;
+  this.showLetter = showLetter;
+  this.rightTarget = rightTarget;
+  this.isHit = false;
+
+  this.x = 100;
+  this.y = 100;
   this.width = 30;
   this.height = 30;
-  this.x = 10;
-  this.y = 10;
-  this.vel = 100;
-  this.alive = true;
-
 
 }
 
-Hero.prototype = {
-
+Target.prototype = {
   loadImage: function() {
+
     this.image = new Image();
 
     var th = this;
@@ -43,35 +47,46 @@ Hero.prototype = {
      var rects =
      [
         {x: this.x, y: this.y, width: this.width, height: this.height},
-
      ];
+
      return rects;
   },
 
-  collidedWith: function(sprite) {
-    if (sprite instanceof Letter) ;
+  collidedWith: function(sprite, collideds) {
+    if (sprite instanceof Letter) {
+      if (Letter.letter == Target.letter) {
+        this.isHit = true;
+        this.rightTarget();
+        // play music of righting.
+      }
+      //
+    }
   },
 
   'update': function() {
-    var increment = this.vel * this.animation.elapsed / 1000;
 
-    if (this.keyboard.pressed(LEFT_ARROW) && this.x > 0)
-       this.x -= increment;
-
-    if (this.keyboard.pressed(RIGHT_ARROW) &&
-             this.x < this.context.canvas.width - this.width)
-       this.x += increment;
-
-    if (this.keyboard.pressed(UP_ARROW) && this.y > 0)
-       this.y -= increment;
-
-    if (this.keyboard.pressed(DOWN_ARROW) &&
-             this.y < this.context.canvas.height - this.height)
-       this.y += increment;
   },
 
   'draw': function() {
-    this.context.fillStyle = "#005500";
+    this.context.fillStyle = "#003300";
     this.context.fillRect(this.x, this.y, this.width, this.height);
+
+    // Desenhando os retângulos para visualização
+
+    var ctx = this.context;
+    var rects = this.rectanglesCollision();
+
+    for (var i in rects) {
+       ctx.save();
+       ctx.strokeStyle = 'red';
+       ctx.strokeRect(rects[i].x, rects[i].y, rects[i].width,
+                      rects[i].height);
+       ctx.restore();
+    }
+
+    this.context.font = "30px Arial";
+    this.context.fillText(message,10,20);
   },
+
+
 }

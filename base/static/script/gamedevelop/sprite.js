@@ -2,8 +2,13 @@ var Sprite = function(context, animation = null, imageLoadingListner=null) {
 
   this.context = context;
   this.animation = animation;
-  this.hasImageToLoad = 0;
+  this.hasImageToLoad = false;
   this.imageLoadingListner = imageLoadingListner;
+  this.alive = true;
+  this.x = 0;
+  this.y = 0;
+  this.width = 30;
+  this.height = 30;
 
 }
 
@@ -21,7 +26,7 @@ Sprite.prototype = {
       th.height = th.width * factor;
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
-      
+
       if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
 
     };

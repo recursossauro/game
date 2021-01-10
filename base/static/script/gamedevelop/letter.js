@@ -16,14 +16,16 @@ var Letter = function(context, animation, imageLoadingListner=null, letter='@') 
 
   this.context = context;
   this.animation = animation;
-  this.hasImageToLoad = 0;
+  this.hasImageToLoad = false;
   this.imageLoadingListner = imageLoadingListner;
+  this.letter = letter;
   this.x = 100;
   this.y = 100;
   this.width = 30;
   this.height = 30;
   this.velX = 0;
   this.velY = 0;
+  this.alive = true;
 
 }
 
@@ -70,44 +72,58 @@ Letter.prototype = {
   },
 
   collidedWith: function(sprite, collideds) {
-
-    if ( // TOP
+    if (sprite instanceof Hero) {
+      if ( // TOP
+          (collideds.indexOf(TOP_LEFT)   != -1) &&
+          (collideds.indexOf(TOP_MIDDLE) != -1) &&
+          (collideds.indexOf(TOP_RIGHT)  != -1)
+        ) {
+        this.velY = 100;
+      } else if ( // LEFT
         (collideds.indexOf(TOP_LEFT)   != -1) &&
-        (collideds.indexOf(TOP_MIDDLE) != -1) &&
-        (collideds.indexOf(TOP_RIGHT)  != -1)
+        (collideds.indexOf(MIDDLE_LEFT) != -1) &&
+        (collideds.indexOf(MIDDLE_LEFT)  != -1)
       ) {
-      this.velY = 100;
-    } else if ( // LEFT
-      (collideds.indexOf(TOP_LEFT)   != -1) &&
-      (collideds.indexOf(MIDDLE_LEFT) != -1) &&
-      (collideds.indexOf(MIDDLE_LEFT)  != -1)
-    ) {
-      this.velX = 100;
-    }  else if ( // DOWN
-       (collideds.indexOf(DOWN_LEFT)   != -1) &&
-       (collideds.indexOf(DOWN_MIDDLE) != -1) &&
-       (collideds.indexOf(DOWN_RIGHT)  != -1)
-     ) {
-       this.velY = -100;
-     }  else if ( // RIGHTT
-        (collideds.indexOf(TOP_RIGHT)   != -1) &&
-        (collideds.indexOf(MIDDLE_RIGHT) != -1) &&
-        (collideds.indexOf(DOWN_RIGHT)  != -1)
-      ) {
+        this.velX = 100;
+      }  else if ( // DOWN
+         (collideds.indexOf(DOWN_LEFT)   != -1) &&
+         (collideds.indexOf(DOWN_MIDDLE) != -1) &&
+         (collideds.indexOf(DOWN_RIGHT)  != -1)
+       ) {
+         this.velY = -100;
+       }  else if ( // RIGHTT
+          (collideds.indexOf(TOP_RIGHT)   != -1) &&
+          (collideds.indexOf(MIDDLE_RIGHT) != -1) &&
+          (collideds.indexOf(DOWN_RIGHT)  != -1)
+        ) {
+          this.velX = -100;
+      } else if (collideds.indexOf(TOP_LEFT) != -1) // TOP_LEFT
+        {
+        this.velX = 100;
+        this.velY = 100;
+      }  else if (collideds.indexOf(TOP_RIGHT) != -1) { //TOP_RIGHT
         this.velX = -100;
-    } else if (collideds.indexOf(TOP_LEFT) != -1) // TOP_LEFT
-      {
-      this.velX = 100;
-      this.velY = 100;
-    }  else if (collideds.indexOf(TOP_RIGHT) != -1) { //TOP_RIGHT
-      this.velX = -100;
-      this.velY = 100;
-    }  else if (collideds.indexOf(DOWN_LEFT) != -1) { // DOWN_LEFT
-      this.velX = 100;
-      this.velY = -100;
-    }   else if (collideds.indexOf(DOWN_RIGHT) != -1) { // DOWN_RIGHT
-      this.velX = -100;
-      this.velY = -100;
+        this.velY = 100;
+      }  else if (collideds.indexOf(DOWN_LEFT) != -1) { // DOWN_LEFT
+        this.velX = 100;
+        this.velY = -100;
+      }   else if (collideds.indexOf(DOWN_RIGHT) != -1) { // DOWN_RIGHT
+        this.velX = -100;
+        this.velY = -100;
+      }
+    }
+
+    if (sprite instanceof Target) {
+      if (sprite.letter == this.letter) {
+      // toca música de acerto
+      // out of game
+      this.animation.deleteSprite(this);
+
+    } else {
+      // toca música de erro
+
+    }
+
     }
   },
 
@@ -179,9 +195,6 @@ Letter.prototype = {
                       rects[i].height);
        ctx.restore();
     }
-
-    this.context.font = "30px Arial";
-    this.context.fillText(message,10,20);
   },
 
 
