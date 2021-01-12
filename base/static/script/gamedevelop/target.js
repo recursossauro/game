@@ -8,13 +8,15 @@ var Target = function(context, animation, letter='@', showLetter=true, rightTarg
   this.hasImageToLoad = true;
   this.imageLoadingListner = imageLoadingListner;
   this.letter = letter;
-  this.showLetter = showLetter;
+  this.showLetter = '@';
+  if (showLetter) this.showLetter = this.letter;
+  //this.showLetter = showLetter;
   this.rightTarget = rightTarget;
   this.isHit = false;
 
-  this.x = 100;
-  this.y = 100;
-  this.width = 30;
+  this.x = 0;
+  this.y = 0;
+  this.width  = 30;
   this.height = 30;
 
 }
@@ -68,24 +70,12 @@ Target.prototype = {
   },
 
   'draw': function() {
-    this.context.fillStyle = "#003300";
-    this.context.fillRect(this.x, this.y, this.width, this.height);
 
-    // Desenhando os retângulos para visualização
-
-    var ctx = this.context;
-    var rects = this.rectanglesCollision();
-
-    for (var i in rects) {
-       ctx.save();
-       ctx.strokeStyle = 'red';
-       ctx.strokeRect(rects[i].x, rects[i].y, rects[i].width,
-                      rects[i].height);
-       ctx.restore();
-    }
-
-    this.context.font = "30px Arial";
-    this.context.fillText(message,10,20);
+    this.context.strokeStyle = '#003000';
+    this.context.strokeRect(this.x, this.y, this.width, this.height);
+    this.context.fillStyle = 'yellow';
+    this.context.font = "25px comic";
+    this.context.fillText(this.showLetter,this.x+8, this.y+this.height-7);
   },
 
 

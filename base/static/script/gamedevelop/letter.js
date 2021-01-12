@@ -21,8 +21,8 @@ var Letter = function(context, animation, imageLoadingListner=null, letter='@') 
   this.letter = letter;
   this.x = 100;
   this.y = 100;
-  this.width = 30;
-  this.height = 30;
+  this.width = 25;
+  this.height = 25;
   this.velX = 0;
   this.velY = 0;
   this.alive = true;
@@ -183,18 +183,7 @@ Letter.prototype = {
     this.context.fillStyle = "#000044";
     this.context.fillRect(this.x, this.y, this.width, this.height);
 
-    // Desenhando os retângulos para visualização
 
-    var ctx = this.context;
-    var rects = this.rectanglesCollision();
-
-    for (var i in rects) {
-       ctx.save();
-       ctx.strokeStyle = 'yellow';
-       ctx.strokeRect(rects[i].x, rects[i].y, rects[i].width,
-                      rects[i].height);
-       ctx.restore();
-    }
   },
 
 

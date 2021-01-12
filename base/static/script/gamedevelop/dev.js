@@ -17,12 +17,16 @@ DragLetters.prototype = {
     // load and draw image from Word.
     this.addObject(new WordImage(this.word.imgSrc, this.context, this));
 
-    // target
-    target = new Target(this.context, this.animation, 'F', true, this.acertou);
-    target.x = 100;
-    target.y = 10;
-    this.addObject(target);
-    this.collision.newSprite(target);
+
+    for (i in this.word.text) {
+      // target
+      target = new Target(this.context, this.animation, this.word.text[i], this.word.target[i]!='@', this.acertou);
+      position = this.canvas.width/2 - this.word.target.length * (target.width+3)/2;
+      target.x = (target.width+3) * i + position;
+      target.y = 10;
+      this.addObject(target);
+      this.collision.newSprite(target);
+    }
 
 
     // Hero

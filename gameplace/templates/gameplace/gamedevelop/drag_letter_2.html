@@ -25,7 +25,7 @@
     document.body.onload = function() {
       // Canvas e Context
       var canvas = document.getElementById('canvas');
-      var drag = new DragLetters(document, canvas, {'imgSrc':'/{{ word.image.url|escapejs }}', 'target':'{{target}}'});
+      var drag = new DragLetters(document, canvas, {'imgSrc':'/{{ word.image.url|escapejs }}', 'text':'{{word.word}}','target':'{{target}}'});
    }
   </script>
 
