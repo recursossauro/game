@@ -117,7 +117,9 @@ Letter.prototype = {
       if (sprite.letter == this.letter) {
       // toca música de acerto
       // out of game
+      this.x = -10; this.y = -10; // not collide with any other letter that avoid two equal targets be hited by one letter;
       this.animation.deleteSprite(this);
+      this.Collision.deleteSprite(this);
 
     } else {
       // toca música de erro
@@ -182,6 +184,9 @@ Letter.prototype = {
   'draw': function() {
     this.context.fillStyle = "#000044";
     this.context.fillRect(this.x, this.y, this.width, this.height);
+    this.context.fillStyle = 'red';
+    this.context.font = "25px comic";
+    this.context.fillText(this.letter,this.x+6, this.y+this.height-2);
 
 
   },

@@ -18,6 +18,7 @@ var Target = function(context, animation, letter='@', showLetter=true, rightTarg
   this.y = 0;
   this.width  = 30;
   this.height = 30;
+  this.color = '#202020';
 
 }
 
@@ -56,10 +57,14 @@ Target.prototype = {
 
   collidedWith: function(sprite, collideds) {
     if (sprite instanceof Letter) {
-      if (Letter.letter == Target.letter) {
+      if (sprite.letter == this.letter) {
         this.isHit = true;
         this.rightTarget();
         // play music of righting.
+        this.color = 'yellow';
+        this.Collision.deleteSprite(this);
+        // Show the letter even it was not showing
+        this.showLetter = this.letter;
       }
       //
     }
@@ -73,7 +78,7 @@ Target.prototype = {
 
     this.context.strokeStyle = '#003000';
     this.context.strokeRect(this.x, this.y, this.width, this.height);
-    this.context.fillStyle = 'yellow';
+    this.context.fillStyle = this.color;
     this.context.font = "25px comic";
     this.context.fillText(this.showLetter,this.x+8, this.y+this.height-7);
   },

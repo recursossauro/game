@@ -31,11 +31,22 @@ DragLetters.prototype = {
 
     // Hero
     hero = new Hero(this.context, new Keyboard(document), this.animation);
+    hero.x = this.canvas.width/2 - hero.width/2;
+    hero.y = this.canvas.height - hero.height;
     this.addObject(hero);
     this.collision.newSprite(hero);
 
     // Letter
-    letter = new Letter(this.context, this.animation, null, 'F');
+    for (i in this.word.text) {
+      // target
+      letter = new Letter(this.context, this.animation, null, this.word.text[i]);
+      position = this.canvas.width/2 - this.word.text.length * (letter.width+3)/2;
+      letter.x = (letter.width+3) * i + position;
+      letter.y = this.canvas.height-(letter.height + 40);
+      this.addObject(letter);
+      this.collision.newSprite(letter);
+    }
+
     this.addObject(letter);
     this.collision.newSprite(letter);
 
