@@ -22,10 +22,16 @@
   <p>Teste</p>
 
   <script type="text/javascript">
+
+    var conclude = function() {
+      
+      document.location.reload(true);
+    }
+
     document.body.onload = function() {
       // Canvas e Context
       var canvas = document.getElementById('canvas');
-      var drag = new DragLetters(document, canvas, {'imgSrc':'/{{ word.image.url|escapejs }}', 'text':'{{word.word}}','target':'{{target}}'});
+      var drag = new DragLetters(document, canvas, {'imgSrc':'/{{ word.image.url|escapejs }}', 'text':'{{word.word}}','target':'{{target}}','randomWord':'{{randomWord}}'});
    }
   </script>
 

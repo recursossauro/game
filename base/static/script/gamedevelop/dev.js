@@ -6,6 +6,7 @@ var DragLetters = function (document, canvas, word) {
   // each element that is drawed on game, like a scenario or a enemy or the hero.
   this.animation = new Animation(this.context);
   this.collision = new Collision();
+  this.numHited = [];
 
   this.preparar();
 
@@ -13,14 +14,14 @@ var DragLetters = function (document, canvas, word) {
 
 DragLetters.prototype = {
 
-  "preparar": function() {
+  preparar: function() {
     // load and draw image from Word.
     this.addObject(new WordImage(this.word.imgSrc, this.context, this));
 
 
     for (i in this.word.text) {
       // target
-      target = new Target(this.context, this.animation, this.word.text[i], this.word.target[i]!='@', this.acertou);
+      target = new Target(this.context, this.animation, this.word.text[i], this.word.target[i]!='@', this);
       position = this.canvas.width/2 - this.word.target.length * (target.width+3)/2;
       target.x = (target.width+3) * i + position;
       target.y = 10;
@@ -37,9 +38,9 @@ DragLetters.prototype = {
     this.collision.newSprite(hero);
 
     // Letter
-    for (i in this.word.text) {
+    for (i in this.word.randomWord) {
       // target
-      letter = new Letter(this.context, this.animation, null, this.word.text[i]);
+      letter = new Letter(this.context, this.animation, null, this.word.randomWord[i]);
       position = this.canvas.width/2 - this.word.text.length * (letter.width+3)/2;
       letter.x = (letter.width+3) * i + position;
       letter.y = this.canvas.height-(letter.height + 40);
@@ -62,11 +63,20 @@ DragLetters.prototype = {
     this.animation.turnOn();
   },
 
-  acertou: function() {
-    // Verifica no array de targets se existe algum target com is_hit == false;
-    // Se não existir o jogo acaba.
+  hited: function(sprite) {
+
+    if (this.numHited.indexOf(sprite)==-1) this.numHited.push(sprite);
+
+    if (this.numHited.length == this.word.text.length) {
+      this.over();
+    }
   },
 
   pause: function() {},
-  over: function() {},
+  over: function() {
+    // animation stop;
+    this.animation.on = false;
+    alert('Concluded');
+    conclude();
+  },
 }

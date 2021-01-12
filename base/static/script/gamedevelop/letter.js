@@ -187,8 +187,6 @@ Letter.prototype = {
     this.context.fillStyle = 'red';
     this.context.font = "25px comic";
     this.context.fillText(this.letter,this.x+6, this.y+this.height-2);
-
-
   },
 
 

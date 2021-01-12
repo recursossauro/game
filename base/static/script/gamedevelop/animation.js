@@ -7,6 +7,7 @@ var Animation = function(context) {
   this.on = false;
   this.lastCicle = 0;
   this.elapsed   = 0;
+  this.message = '';
 }
 
 Animation.prototype = {
@@ -46,6 +47,12 @@ Animation.prototype = {
 
     // deletion processing
     this.processDeletings();
+
+    if (this.message) {
+      this.ctx.fillStyle = 'red';
+      this.ctx.font = "25px comic";
+      this.ctx.fillText(this.message, 0, 20);
+    }
 
     // Update the time of next cicle.
     this.lastCicle = now;

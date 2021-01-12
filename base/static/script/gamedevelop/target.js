@@ -59,7 +59,7 @@ Target.prototype = {
     if (sprite instanceof Letter) {
       if (sprite.letter == this.letter) {
         this.isHit = true;
-        this.rightTarget();
+        this.rightTarget.hited(this);
         // play music of righting.
         this.color = 'yellow';
         this.Collision.deleteSprite(this);
