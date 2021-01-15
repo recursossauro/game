@@ -6,8 +6,9 @@ var DOWN_ARROW = 40;
 var SPACE = 32;
 var ENTER = 13;
 
-function Keyboard(element) {
+function Keyboard(element, canvas) {
    this.element = element;
+   this.canvas = canvas;
 
    // Array of keys pressed
    this.presseds = [];
@@ -36,6 +37,15 @@ function Keyboard(element) {
       keyboard.presseds[event.keyCode] = false;
       keyboard.fireds[event.keyCode] = false;
    });
+
+   // touches
+
+   this.touchedStartX = '';
+   this.touchedStartY = '';
+   this.canvas.addEventListener("touchstart", function(e) {keyboard.handleStart(e);});
+   this.canvas.addEventListener("touchmove", function(e) {keyboard.handleMove(e);});
+   this.canvas.addEventListener("touchend", function(e) {keyboard.handleEnd(e);});
+   this.canvas.addEventListener("touchcancel", function(e) {keyboard.handleEnd(e);});
 }
 
 Keyboard.prototype = {
@@ -44,5 +54,25 @@ Keyboard.prototype = {
    },
    fired: function(key, callback) {
       this.fireFunctions[key] = callback;
-   }
+   },
+
+   handleStart: function(e) {
+     this.touchedStartX = e.touches[0].pageX;
+     this.touchedStartY = e.touches[0].pageY;
+   },
+
+   handleMove: function(e) {
+     this.handleEnd(e);
+     if (e.touches[0].pageX-this.touchedStartX>0) this.presseds[RIGHT_ARROW] = true;
+     if (e.touches[0].pageX-this.touchedStartX<0) this.presseds[LEFT_ARROW]  = true;
+     if (e.touches[0].pageY-this.touchedStartY>0) this.presseds[DOWN_ARROW]  = true;
+     if (e.touches[0].pageY-this.touchedStartY<0) this.presseds[UP_ARROW]    = true;
+   },
+
+   handleEnd: function(e) {
+     this.presseds[RIGHT_ARROW] = false;
+     this.presseds[LEFT_ARROW]  = false;
+     this.presseds[UP_ARROW]    = false;
+     this.presseds[DOWN_ARROW]  = false;
+   },
 }

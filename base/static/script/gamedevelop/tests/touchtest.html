@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+  </body>
+</html>
+<script type="text/javascript">
+  var xIni = 0;
+  var x = 0;
+
+
+  function draw(mensagem) {
+    ctx.strokeStyle = 'black';
+    ctx.strokeRect(0,0,canvas.width, canvas.height);
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(0,0,canvas.width, canvas.height);
+    ctx.fillStyle = 'red';
+    ctx.font = "40px comic";
+    ctx.fillText(mensagem,8, 40);
+  }
+
+  function handleStart(e) {
+    xIni = e.touches[0].pageX;
+    x = xIni;
+    draw('xIni:('+xIni+') x:('+x+') start');
+  }
+
+  function handleMove(e) {
+    x = e.touches[0].pageX;
+    draw('xIni:('+xIni+') x:('+x+') move');
+  }
+
+  function handleEnd(e) {
+    x = xIni;
+    draw('xIni:('+xIni+') x:('+x+') end');
+  }
+
+  function handleCancel(e) {
+    x = e.touches[0].pageX;
+    draw('xIni:('+xIni+') x:('+x+') cancel');
+  }
+
+  var mensagem = 'mensagem';
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  draw('');
+
+  var el = canvas;
+  el.addEventListener("touchstart", handleStart);
+  el.addEventListener("touchmove", handleMove);
+  el.addEventListener("touchend", handleEnd);
+  el.addEventListener("touchcancel", handleCancel);
+
+</script>

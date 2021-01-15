@@ -1,0 +1,11 @@
+{% extends 'base_game.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{gamer.nickname}}'s place | {{block.super}}{% endblock %}
+
+{% block content %}
+ {% block game %}{% endblock %}
+{% endblock %}

@@ -115,17 +115,16 @@ Letter.prototype = {
 
     if (sprite instanceof Target) {
       if (sprite.letter == this.letter) {
-      // toca música de acerto
-      // out of game
-      this.x = -10; this.y = -10; // not collide with any other letter that avoid two equal targets be hited by one letter;
-      this.animation.deleteSprite(this);
-      this.Collision.deleteSprite(this);
+        // toca música de acerto
+        // out of game
+        this.x = -10; this.y = -10; // not collide with any other letter that avoid two equal targets be hited by one letter;
+        this.animation.deleteSprite(this);
+        this.Collision.deleteSprite(this);
 
-    } else {
-      // toca música de erro
+      } else {
+        // toca música de erro
 
-    }
-
+      }
     }
   },
 

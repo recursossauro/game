@@ -1,4 +1,4 @@
-{% extends 'gameplace/gamer_place_base.html' %}
+{% extends 'gameplace/game.html' %}
 
 {% load static %}
 
@@ -7,7 +7,6 @@
 {% block title %}Drag Letter | {{block.super}} {% endblock %}
 
 {% block game %}
-
   <script type="text/javascript" src='{% static "script/gamedevelop/dev.js" %}'></script>
   <script type="text/javascript" src='{% static "script/gamedevelop/animation.js" %}'></script>
   <script type="text/javascript" src='{% static "script/gamedevelop/collision.js" %}'></script>
@@ -16,15 +15,12 @@
   <script type="text/javascript" src='{% static "script/gamedevelop/hero.js" %}'></script>
   <script type="text/javascript" src='{% static "script/gamedevelop/target.js" %}'></script>
   <script type="text/javascript" src='{% static "script/gamedevelop/letter.js" %}'></script>
-
   <canvas id="canvas" width="290" height="400"></canvas>
-
-  <p>Teste</p>
 
   <script type="text/javascript">
 
     var conclude = function() {
-      
+
       document.location.reload(true);
     }
 
