@@ -63,10 +63,11 @@ Keyboard.prototype = {
 
    handleMove: function(e) {
      this.handleEnd(e);
-     if (e.touches[0].pageX-this.touchedStartX>0) this.presseds[RIGHT_ARROW] = true;
-     if (e.touches[0].pageX-this.touchedStartX<0) this.presseds[LEFT_ARROW]  = true;
-     if (e.touches[0].pageY-this.touchedStartY>0) this.presseds[DOWN_ARROW]  = true;
-     if (e.touches[0].pageY-this.touchedStartY<0) this.presseds[UP_ARROW]    = true;
+     fator = 10;
+     if (e.touches[0].pageX-this.touchedStartX>fator) this.presseds[RIGHT_ARROW] = true;
+     if (e.touches[0].pageX-this.touchedStartX<fator) this.presseds[LEFT_ARROW]  = true;
+     if (e.touches[0].pageY-this.touchedStartY>fator) this.presseds[DOWN_ARROW]  = true;
+     if (e.touches[0].pageY-this.touchedStartY<fator) this.presseds[UP_ARROW]    = true;
    },
 
    handleEnd: function(e) {
