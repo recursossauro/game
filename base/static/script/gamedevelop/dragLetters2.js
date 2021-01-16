@@ -76,7 +76,6 @@ DragLetters.prototype = {
   over: function() {
     // animation stop;
     this.animation.on = false;
-    alert('Concluded');
     conclude();
   },
 }

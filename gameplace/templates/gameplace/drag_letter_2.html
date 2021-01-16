@@ -1,0 +1,54 @@
+{% extends 'gameplace/game.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}Drag Letter | {{block.super}} {% endblock %}
+
+{% block game %}
+  {% if word %}
+    <script type="text/javascript" src='{% static "script/gamedevelop/dragLetters2.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/animation.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/collision.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/keyboard.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/wordImage.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/hero.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/target.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/gamedevelop/letter.js" %}'></script>
+    <canvas id="canvas" width="290" height="400"></canvas>
+
+
+    <form id="drag_letters_form" action="" method="post">
+
+      {% csrf_token %}
+
+      <input type="hidden" name="word_id" id="word_id" value="{{word.id}}">
+
+
+    </form>
+
+    <script type="text/javascript">
+
+
+      var conclude = function() {
+
+        alert('Congratulations! You have commplited the word {{word.word}}.');
+        document.getElementById("drag_letters_form").submit();
+      }
+
+      document.body.onload = function() {
+        // Canvas e Context
+        var canvas = document.getElementById('canvas');
+        var drag = new DragLetters(document, canvas, {'imgSrc':'{{ word.image.url|escapejs }}', 'text':'{{word.word}}','target':'{{target}}','randomWord':'{{randomWord}}'});
+     }
+    </script>
+  {% else %}
+      <div class="alert alert-dark">
+        <p>Sorry.</p>
+        <p>There is no word.</p>
+        <p>Asck for the master to insert some one.</p>
+        <a href="{% url 'indexredirect' %}" class="button">Click here to return.</a>
+      </div>
+  {% endif %}
+{% endblock %}

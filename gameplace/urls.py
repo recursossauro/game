@@ -36,6 +36,6 @@ urlpatterns = [
     path('<int:pk>/games', GamesDetailView.as_view(), name='games'),
     path('<int:pk>/dragletter', DragLetterFormView.as_view(), name='dragletter'),
 
-    path('dev', DevView.as_view(), name='dev'),
+    path('<int:pk>/dragletter2', DevView.as_view(), name='dragletter2'),
 
 ]

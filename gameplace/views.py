@@ -250,7 +250,8 @@ def getGamer(user, pk):
 
 class DragLetterFormView(LoginRequiredMixin, FormView):
 
-    template_name = 'gameplace/drag_letter.html'
+    #template_name = 'gameplace/drag_letter.html'
+    template_name = "gameplace/drag_letter_2.html"
 
     form_class = WordIdForm
 
@@ -411,7 +412,7 @@ class DragLetterTemplateView(FormView):
 
 class DevView(TemplateView):
 
-    template_name = "gameplace/gamedevelop/drag_letter_2.html"
+    template_name = "gameplace/drag_letter_2.html"
 
     def get_context_data(self, **kwargs):
 
