@@ -16,7 +16,6 @@ from .views import (
     GamesDetailView,
     DragLetterFormView,
     DragLetterTemplateView,
-    DevView,
 )
 
 
@@ -35,7 +34,5 @@ urlpatterns = [
 
     path('<int:pk>/games', GamesDetailView.as_view(), name='games'),
     path('<int:pk>/dragletter', DragLetterFormView.as_view(), name='dragletter'),
-
-    path('<int:pk>/dragletter2', DevView.as_view(), name='dragletter2'),
 
 ]

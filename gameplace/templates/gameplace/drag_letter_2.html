@@ -8,14 +8,14 @@
 
 {% block game %}
   {% if word %}
-    <script type="text/javascript" src='{% static "script/gamedevelop/dragLetters2.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/animation.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/collision.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/keyboard.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/wordImage.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/hero.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/target.js" %}'></script>
-    <script type="text/javascript" src='{% static "script/gamedevelop/letter.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/dragLetters2.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/animation.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/collision.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/keyboard.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/wordImage.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/hero.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/target.js" %}'></script>
+    <script type="text/javascript" src='{% static "script/dragletter2/letter.js" %}'></script>
     <canvas id="canvas" width="290" height="400"></canvas>
 
 
@@ -40,7 +40,7 @@
       document.body.onload = function() {
         // Canvas e Context
         var canvas = document.getElementById('canvas');
-        var drag = new DragLetters(document, canvas, {'imgSrc':'{{ word.image.url|escapejs }}', 'text':'{{word.word}}','target':'{{target}}','randomWord':'{{randomWord}}'});
+        var drag = new DragLetters(document, canvas, {'imgSrc':{% if word.image.url != None and word.get_image_url %}'{{ word.image.url|escapejs }}'{% else %}"{% static 'images/generic-avatar.png' %}"{% endif %}, 'text':'{{word.word}}','target':'{{target}}','randomWord':'{{randomWord}}'});
      }
     </script>
   {% else %}

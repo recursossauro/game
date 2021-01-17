@@ -1,3 +1,4 @@
+//'/static/sounds/completed.mp3'
 var DragLetters = function (document, canvas, word) {
 
   this.canvas   = canvas;
@@ -7,6 +8,8 @@ var DragLetters = function (document, canvas, word) {
   this.animation = new Animation(this.context);
   this.collision = new Collision();
   this.numHited = [];
+  this.numFilesToLoad = 0;
+  this.numFilesLoaded = 0;
 
   this.preparar();
 
@@ -15,13 +18,18 @@ var DragLetters = function (document, canvas, word) {
 DragLetters.prototype = {
 
   preparar: function() {
+    // load completedAudio
+    this.completedAudio = new Audio();
+    this.completedAudio.src = '/static/sounds/completed.mp3';
+    this.completedAudio.load();
+
     // load and draw image from Word.
     this.addObject(new WordImage(this.word.imgSrc, this.context, this));
 
 
     for (i in this.word.text) {
       // target
-      target = new Target(this.context, this.animation, this.word.text[i], this.word.target[i]!='@', this);
+      target = new Target(this.context, this.animation, this.word.text[i], this.word.target[i]!='☺', this);
       position = this.canvas.width/2 - this.word.target.length * (target.width+3)/2;
       target.x = (target.width+3) * i + position;
       target.y = 10;
@@ -48,19 +56,24 @@ DragLetters.prototype = {
       this.collision.newSprite(letter);
     }
 
-    this.addObject(letter);
-    this.collision.newSprite(letter);
-
     this.animation.newProcessing(this.collision);
   },
 
   "addObject": function(object) {
+
     this.animation.addSprite(object);
-    if (object.hasImageToLoad) object.loadImage();
+    if (object.numFilesToLoad > 0) {
+
+      this.numFilesToLoad += object.numFilesToLoad;
+      object.loadFile();
+    }
   },
 
-  imageLoaded: function() {
-    this.animation.turnOn();
+  filesLoaded: function() {
+    this.numFilesLoaded++;
+
+    if (this.numFilesToLoad==this.numFilesLoaded)
+      this.animation.turnOn();
   },
 
   hited: function(sprite) {
@@ -76,6 +89,7 @@ DragLetters.prototype = {
   over: function() {
     // animation stop;
     this.animation.on = false;
+    this.completedAudio.play();
     conclude();
   },
 }

@@ -1,13 +1,14 @@
-var WordImage = function(imgUrl, context, imageLoadingListner=null) {
+var WordImage = function(imgUrl, context, fileLoadingListner=null) {
   this.imgUrl = imgUrl;
   this.context = context;
-  this.hasImageToLoad = true;
-  this.imageLoadingListner = imageLoadingListner;
+  this.numFilesToLoad = 1;
+  this.fileLoadingListner = fileLoadingListner;
 
 }
 
 WordImage.prototype = {
-  'loadImage': function() {
+  'loadFile': function() {
+
     this.image = new Image();
     var th = this;
 
@@ -20,7 +21,7 @@ WordImage.prototype = {
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
 
-      if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
+      if (th.fileLoadingListner) th.fileLoadingListner.filesLoaded();
     };
 
     this.image.src =  this.imgUrl;

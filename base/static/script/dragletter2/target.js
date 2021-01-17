@@ -1,16 +1,19 @@
 var message = '';
 
 
-var Target = function(context, animation, letter='@', showLetter=true, rightTarget, imageLoadingListner=null) {
+var Target = function(context, animation, letter='@', showLetter=true, rightTarget, fileLoadingListner=null) {
 
   this.context = context;
   this.animation = animation;
-  this.hasImageToLoad = true;
-  this.imageLoadingListner = imageLoadingListner;
+
+  this.numFilesToLoad = 0;
+  //Target.numFilesToLoad = 0;
+  this.fileLoadingListner = fileLoadingListner;
+
   this.letter = letter;
-  this.showLetter = '@';
+  this.showLetter = '☺';
   if (showLetter) this.showLetter = this.letter;
-  //this.showLetter = showLetter;
+
   this.rightTarget = rightTarget;
   this.isHit = false;
 
@@ -20,29 +23,22 @@ var Target = function(context, animation, letter='@', showLetter=true, rightTarg
   this.height = 30;
   this.color = '#202020';
 
+
 }
 
+//Target.numFilesToLoad = 1;
+Target.rightSound = new Audio();
+Target.rightSound.src =  '/static/sounds/right.mp3';
+Target.rightSound.load();
+
+Target.wrongSound = new Audio();
+Target.wrongSound.src =  '/static/sounds/wrong.mp3';
+Target.wrongSound.load();
+
+
 Target.prototype = {
-  loadImage: function() {
 
-    this.image = new Image();
-
-    var th = this;
-
-    this.image.onload = function() {
-
-      // relation between image.width and image.height.
-      factor = th.image.height / th.image.width;
-      th.width = th.context.canvas.width/3;
-      th.height = th.width * factor;
-      th.x = th.context.canvas.width/2-th.width/2;
-      th.y = th.context.canvas.height/2-th.height/2;
-
-      if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
-
-    };
-
-    this.image.src =  this.imgUrl;
+  'loadFile': function() {
   },
 
   rectanglesCollision: function() {
@@ -65,6 +61,9 @@ Target.prototype = {
         this.Collision.deleteSprite(this);
         // Show the letter even it was not showing
         this.showLetter = this.letter;
+        Target.rightSound.play();
+      } else {
+        Target.wrongSound.play();
       }
       //
     }
@@ -82,6 +81,5 @@ Target.prototype = {
     this.context.font = "25px comic";
     this.context.fillText(this.showLetter,this.x+8, this.y+this.height-7);
   },
-
 
 }

@@ -1,7 +1,7 @@
-10º
-dragletter bug fix - if click on the letter space the game concider you put the right letter in this space.
-dragletter on canvas.
------------
+14º
+Put an sprite on hero.
+
+----------------------------------------------------------------------------------
 My ilustrated dictionary - a kid can access his words and navigate by day.
 The kid can set his prefered word and see how many this word is prefered too.
 Master add another existent master to the user
@@ -122,3 +122,30 @@ put reset password link on login.
 -----------------------------
 dragletter on canvas -> dragleters2;
 dragletters2 on menu with real data.
+
+11º
+Bug fix - error when has no image.
+-----------------------------------
+
+12º
+Substitute '@' recognize for '☺';
+Substitute show '@' to show '☺';
+canceled -> dragletter bug fix - if click on the letter space the game concider you put the right letter in this space
+with the substitutio of dragletter by dragletter2, this bug fix has no utility.
+-----------
+
+13º
+move js files to dragletter2 from gamedevelop.
+----------------------------------------------
+change loading image manage to loading file manage in all dragletter2 game.
+---------------------------------------------------------------------------
+bugfix: On dragletter22.js after the loop for to create all letters, the last one are add twice;
+------------------------------------------------------------------------------------------------
+Put hit right target sound into dragletter2.
+-----------------------------
+bugfix - image do not is readed;
+--------------------------------
+Put hit wrong target sound into dragletter2.
+--------------------------------------------
+Put complited sound into dragletters2
+--------------------------------------

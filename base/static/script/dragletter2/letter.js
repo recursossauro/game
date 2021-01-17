@@ -9,15 +9,13 @@ var DOWN_LEFT   = '5';
 var DOWN_MIDDLE = '6';
 var DOWN_RIGHT  = '7';
 
-var message = '';
 
-
-var Letter = function(context, animation, imageLoadingListner=null, letter='@') {
+var Letter = function(context, animation, fileLoadingListner=null, letter='@') {
 
   this.context = context;
   this.animation = animation;
-  this.hasImageToLoad = false;
-  this.imageLoadingListner = imageLoadingListner;
+  this.numFilesToLoad = 0;
+  this.fileLoadingListner = fileLoadingListner;
   this.letter = letter;
   this.x = 100;
   this.y = 100;
@@ -26,11 +24,12 @@ var Letter = function(context, animation, imageLoadingListner=null, letter='@') 
   this.velX = 0;
   this.velY = 0;
   this.alive = true;
+  this.message='false';
 
 }
 
 Letter.prototype = {
-  loadImage: function() {
+  loadFile: function() {
 
     this.image = new Image();
 
@@ -44,8 +43,7 @@ Letter.prototype = {
       th.height = th.width * factor;
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
-      th.isImageLoaded = 1;
-      if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
+      if (th.fileLoadingListner) th.fileLoadingListner.filesLoaded();
 
     };
 
@@ -72,7 +70,7 @@ Letter.prototype = {
   },
 
   collidedWith: function(sprite, collideds) {
-    if (sprite instanceof Hero) {
+    if (sprite instanceof Hero || sprite instanceof Letter || (sprite instanceof Target && sprite.letter != this.letter)) {
       if ( // TOP
           (collideds.indexOf(TOP_LEFT)   != -1) &&
           (collideds.indexOf(TOP_MIDDLE) != -1) &&

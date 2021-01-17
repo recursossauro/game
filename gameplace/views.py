@@ -372,7 +372,8 @@ class _Word:
 
 class DragLetterTemplateView(FormView):
 
-    template_name = 'gameplace/drag_letter.html'
+    #template_name = 'gameplace/drag_letter.html'
+    template_name = "gameplace/drag_letter_2.html"
     form_class = WordIdForm
 
 
@@ -397,44 +398,6 @@ class DragLetterTemplateView(FormView):
         word = words[i]
 
         context = super(DragLetterTemplateView, self).get_context_data(**kwargs)
-
-        context['title'] = 'Drag Letter'
-        context['gamer'] = {'nickname':'Gamer'}
-        context['word']  = word['word']
-        context['target'] = word['target']
-
-        randomList = list(word['word'].word)
-        random.shuffle(randomList)
-        context['randomWord'] = ''.join(randomList)
-
-
-        return context
-
-class DevView(TemplateView):
-
-    template_name = "gameplace/drag_letter_2.html"
-
-    def get_context_data(self, **kwargs):
-
-        words = [
-            {
-                'word':_Word("butterfly",'static/images/dragletters/butterfly.jpeg'),
-                'target':'@u@ter@l@'
-            },
-            {
-                'word':_Word("carrot",'static/images/dragletters/cenoura.png'),
-                'target':'@ar@ot'
-            },
-            {
-                'word':_Word("bee",'static/images/dragletters/abelha.jpg'),
-                'target':'bee'
-            },
-        ]
-
-        i=random.randint(0,2)
-        word = words[i]
-
-        context = super(DevView, self).get_context_data(**kwargs)
 
         context['title'] = 'Drag Letter'
         context['gamer'] = {'nickname':'Gamer'}

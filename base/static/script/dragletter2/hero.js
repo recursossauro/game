@@ -1,10 +1,10 @@
-var Hero = function(context, keyboard, animation, imageLoadingListner=null) {
+var Hero = function(context, keyboard, animation, fileLoadingListner=null) {
 
   this.context = context;
   this.keyboard = keyboard;
   this.animation = animation;
-  this.hasImageToLoad = true;
-  this.imageLoadingListner = imageLoadingListner;
+  this.numFilesToLoad = 0;
+  this.fileLoadingListner = fileLoadingListner;
   this.width = 30;
   this.height = 30;
   this.x = 10;
@@ -17,7 +17,7 @@ var Hero = function(context, keyboard, animation, imageLoadingListner=null) {
 
 Hero.prototype = {
 
-  loadImage: function() {
+  loadFile: function() {
     this.image = new Image();
 
     var th = this;
@@ -31,7 +31,7 @@ Hero.prototype = {
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
 
-      if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
+      if (th.fileLoadingListner) th.fileLoadingListner.filesLoaded();
 
     };
 
