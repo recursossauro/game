@@ -39,7 +39,7 @@ DragLetters.prototype = {
 
 
     // Hero
-    hero = new Hero(this.context, new Keyboard(document, this.canvas), this.animation);
+    hero = new Hero(this.context, new Keyboard(document, this.canvas), this.animation, this);
     hero.x = this.canvas.width/2 - hero.width/2;
     hero.y = this.canvas.height - hero.height;
     this.addObject(hero);
