@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{title}} {{object.nickname}}'s place | {{block.super}}{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+
+</script>
+<header>
+  <h3>GAMER PLACE</h3>
+</header>
+<article class="">
+  <h4>{{object.nickname}}</h4>
+  {% if object.get_avatar_url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="">{% endif %}
+  <ul>
+    <li><a href="{% url 'gamerplace:index' object.pk %}">return</a></li>
+  </ul>
+</article>
+<aside>
+  {% include 'words/dictionary.html' %}
+</aside>
+<section class="galery">
+</section>
+
+{% endblock %}

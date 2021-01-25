@@ -13,6 +13,7 @@
   {% if object.get_avatar_url != None %}<img class="avatar_img" src="{{object.avatar.url}}" alt="">{% endif %}
   <ul>
     <li><a href="{% url 'gameplace:dragletter' object.pk %}">Play</a></li>
+    <li><a href="{% url 'gamerplace:mydictionary' object.pk %}">My dictionary</a></li>
   </ul>
 </article>
 <aside class="">

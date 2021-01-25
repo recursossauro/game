@@ -1,0 +1,81 @@
+{% load static %}
+
+<script type="text/javascript">
+
+  var cur = 0;
+
+  var next = function() {
+    dictionary = document.getElementsByName('word');
+    if (cur<dictionary.length-1) {
+
+      dictionary[cur].classList.remove('current');
+      dictionary[cur].classList.add('notcurrent');
+      cur++;
+      dictionary[cur].classList.remove('notcurrent');
+      dictionary[cur].classList.add('current');
+
+      return false;
+    }
+  }
+
+  var preview = function() {
+
+    if (cur>0) {
+
+      dictionary = document.getElementsByName('word');
+
+      dictionary[cur].classList.remove('current');
+      dictionary[cur].classList.add('notcurrent');
+      cur--;
+      dictionary[cur].classList.remove('notcurrent');
+      dictionary[cur].classList.add('current');
+
+      return false;
+    }
+
+  }
+
+  document.body.onload = function() {
+    next();
+    preview();
+  }
+
+</script>
+
+<style media="screen">
+
+  .notcurrent {
+    display: none;
+  }
+
+  .current {
+    display: block;
+  }
+
+</style>
+
+<section>
+
+  {% for word in words %}
+
+  <div class="notcurrent" name="word">
+    <article class="panel center">
+      <main>
+        <h3>{{word}}</h3>
+        {% if word.image.url != None and word.get_image_url %}
+          <img class="img_panel" src="{{word.image.url}}" alt="{{word}}">
+        {% else %}
+          <img class="img_panel" src="{% static '/images/generic-avatar.png' %}" alt="generic">
+        {% endif %}
+      </main>
+      <aside class="">
+        <a class='button' href="" onclick="preview();">&lt;- preview</a>
+        <span id='dicCounter'>{{forloop.counter}}/{{words|length}}</span>
+        <a class="btn" href="" onclick="next();">next -&gt;</a>
+      </aside>
+    </article>
+  </div>
+
+  {% endfor %}
+
+</section>
