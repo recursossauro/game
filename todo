@@ -1,11 +1,11 @@
 18º
-
-
 Dragletter2 add an sprietesheet as background
 ----------------------------------------------------------------------------------
 
-Dragletter2 do a load image and load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
 
+
+Dragletter2 do a load image and load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
+---------------------------------------------------------------------------------------------------------------------------------------
 
 The kid can set his prefered word and see how many this word is prefered too.
 Master add another existent master to the user
@@ -35,7 +35,7 @@ game complete a word with the right letter.
 --------------------------------------------
 game link the image to the word.
 ------------------------------------------
-game chose the correspondent word to the image between 3 images after see the image with the word toggerder for fill seconds.
+game chose the correspondent word to the image between 3 images after see the image with the word toggeder for fill seconds.
 ------------------------------------------------------------------------------------------------------------------------------
 Person, Master, Gamer photo or avatar url null, use default url for all, a generic image.
 -------------------------------------------------------------------------------------------
