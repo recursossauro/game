@@ -11,13 +11,13 @@ var DragLetters = function (document, canvas, word) {
   this.numFilesToLoad = 0;
   this.numFilesLoaded = 0;
 
-  this.preparar();
+  this.prepare();
 
 }
 
 DragLetters.prototype = {
 
-  preparar: function() {
+  prepare: function() {
     // load completedAudio
     this.completedAudio = new Audio();
     this.completedAudio.src = '/static/sounds/completed.mp3';
@@ -45,11 +45,12 @@ DragLetters.prototype = {
     hero.y = this.canvas.height - hero.height;
     this.addObject(hero);
     this.collision.newSprite(hero);
+    keyboard.addTouchListner(hero);
 
     // VisualTouch
     visualTouch = new VisualTouch(this.context);
     this.addObject(visualTouch);
-    keyboard.setTouchListner(visualTouch);
+    keyboard.addTouchListner(visualTouch);
 
     // Letter
     for (i in this.word.randomWord) {
@@ -78,8 +79,9 @@ DragLetters.prototype = {
   filesLoaded: function() {
     this.numFilesLoaded++;
 
-    if (this.numFilesToLoad==this.numFilesLoaded)
+    if (this.numFilesToLoad==this.numFilesLoaded) {
       this.animation.turnOn();
+    }
   },
 
   hited: function(sprite) {

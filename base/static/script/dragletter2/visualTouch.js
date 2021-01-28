@@ -10,6 +10,7 @@ var VisualTouch = function(context, fileLoadingListner=null) {
 }
 
 VisualTouch.prototype = {
+  
   'update': function() {
 
   },

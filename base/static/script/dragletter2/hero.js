@@ -87,5 +87,15 @@ Hero.prototype = {
     this.spritesheet.nextFrame();
   },
 
+  'touch': function(type, x=0, y=0) {
 
+    if (type == TOUCH_START || type == TOUCH_MOVE) {
+      this.vel = 60;
+    }
+
+    if (type == TOUCH_END) {
+      this.vel = 100;
+    }
+
+  },
 }

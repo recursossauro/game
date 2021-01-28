@@ -23,6 +23,8 @@ function Keyboard(element, canvas) {
    // registered functions of fire
    this.fireFunctions = [];
 
+   this.touchListners = [];
+
    var keyboard = this;
 
    element.addEventListener('keydown', function(event) {
@@ -56,6 +58,7 @@ Keyboard.prototype = {
    pressed: function(key) {
       return this.presseds[key];
    },
+
    fired: function(key, callback) {
       this.fireFunctions[key] = callback;
    },
@@ -63,7 +66,8 @@ Keyboard.prototype = {
    handleStart: function(e) {
      this.touchedStartX = e.touches[0].pageX - this.canvas.offsetLeft;
      this.touchedStartY = e.touches[0].pageY - this.canvas.offsetTop;
-     if (this.touchListner) this.touchListner.touch(TOUCH_START, this.touchedStartX, this.touchedStartY);
+
+     for (i in this.touchListners) this.touchListners[i].touch(TOUCH_START, this.touchedStartX, this.touchedStartY);
    },
 
    handleMove: function(e) {
@@ -78,18 +82,20 @@ Keyboard.prototype = {
      if (y-this.touchedStartY>fator) this.presseds[DOWN_ARROW]  = true;
      if (this.touchedStartY-y>fator) this.presseds[UP_ARROW]    = true;
 
-     if (this.touchListner) this.touchListner.touch(TOUCH_MOVE, x, y);
+     for (i in this.touchListners) this.touchListners[i].touch(TOUCH_MOVE, x, y);
    },
 
    handleEnd: function(e) {
+     e.preventDefault();
      this.presseds[RIGHT_ARROW] = false;
      this.presseds[LEFT_ARROW]  = false;
      this.presseds[UP_ARROW]    = false;
      this.presseds[DOWN_ARROW]  = false;
-     if (this.touchListner) this.touchListner.touch(TOUCH_END);
+
+    for (i in this.touchListners) this.touchListners[i].touch(TOUCH_END);
    },
 
-   setTouchListner(touchListner) {
-     this.touchListner = touchListner;
+   addTouchListner(touchListner) {
+     this.touchListners.push(touchListner);
    }
 }
