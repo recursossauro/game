@@ -6,6 +6,10 @@ var DOWN_ARROW = 40;
 var SPACE = 32;
 var ENTER = 13;
 
+var TOUCH_START = 0;
+var TOUCH_MOVE  = 1;
+var TOUCH_END   = 2;
+
 function Keyboard(element, canvas) {
    this.element = element;
    this.canvas = canvas;
@@ -57,17 +61,24 @@ Keyboard.prototype = {
    },
 
    handleStart: function(e) {
-     this.touchedStartX = e.touches[0].pageX;
-     this.touchedStartY = e.touches[0].pageY;
+     this.touchedStartX = e.touches[0].pageX - this.canvas.offsetLeft;
+     this.touchedStartY = e.touches[0].pageY - this.canvas.offsetTop;
+     if (this.touchListner) this.touchListner.touch(TOUCH_START, this.touchedStartX, this.touchedStartY);
    },
 
    handleMove: function(e) {
      this.handleEnd(e);
-     fator = 10;
-     if (e.touches[0].pageX-this.touchedStartX>fator) this.presseds[RIGHT_ARROW] = true;
-     if (e.touches[0].pageX-this.touchedStartX<fator) this.presseds[LEFT_ARROW]  = true;
-     if (e.touches[0].pageY-this.touchedStartY>fator) this.presseds[DOWN_ARROW]  = true;
-     if (e.touches[0].pageY-this.touchedStartY<fator) this.presseds[UP_ARROW]    = true;
+
+     fator = 20;
+     x = e.touches[0].pageX - this.canvas.offsetLeft;
+     y = e.touches[0].pageY - this.canvas.offsetTop;
+
+     if (x-this.touchedStartX>fator) this.presseds[RIGHT_ARROW] = true;
+     if (this.touchedStartX-x>fator) this.presseds[LEFT_ARROW]  = true;
+     if (y-this.touchedStartY>fator) this.presseds[DOWN_ARROW]  = true;
+     if (this.touchedStartY-y>fator) this.presseds[UP_ARROW]    = true;
+
+     if (this.touchListner) this.touchListner.touch(TOUCH_MOVE, x, y);
    },
 
    handleEnd: function(e) {
@@ -75,5 +86,10 @@ Keyboard.prototype = {
      this.presseds[LEFT_ARROW]  = false;
      this.presseds[UP_ARROW]    = false;
      this.presseds[DOWN_ARROW]  = false;
+     if (this.touchListner) this.touchListner.touch(TOUCH_END);
    },
+
+   setTouchListner(touchListner) {
+     this.touchListner = touchListner;
+   }
 }

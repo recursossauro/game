@@ -37,13 +37,19 @@ DragLetters.prototype = {
       this.collision.newSprite(target);
     }
 
+    keyboard = new Keyboard(document, this.canvas);
 
     // Hero
-    hero = new Hero(this.context, new Keyboard(document, this.canvas), this.animation, this);
+    hero = new Hero(this.context, keyboard, this.animation, this);
     hero.x = this.canvas.width/2 - hero.width/2;
     hero.y = this.canvas.height - hero.height;
     this.addObject(hero);
     this.collision.newSprite(hero);
+
+    // VisualTouch
+    visualTouch = new VisualTouch(this.context);
+    this.addObject(visualTouch);
+    keyboard.setTouchListner(visualTouch);
 
     // Letter
     for (i in this.word.randomWord) {
