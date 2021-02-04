@@ -1,8 +1,8 @@
-18º
-Dragletter2 add an sprietesheet as background
-----------------------------------------------------------------------------------
+19º
 
 
+backlog
+=================
 
 Dragletter2 do a load image and load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -18,8 +18,7 @@ Rules
 how, in the gamer person create a user fk created by.
 ------------------------------------------------------
 
-backlog
-=================
+
 do the image to word be not null and not blank in the Model
 ------------------------------------------------------------
 
@@ -171,3 +170,7 @@ Dragletter2 do a better touch control (more distant end corrected the form of de
 
 17º
 Prevent scroll on touch.
+
+18º
+Dragletter2 add an image as background
+----------------------------------------------------------------------------------

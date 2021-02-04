@@ -30,6 +30,7 @@ Hero.prototype = {
     };
 
     this.image.src =  '/static/images/dragletters2/herosprite.png';
+    
     this.spritesheet = new Spritesheet(this.context, this.image, 8, 12, this.width, this.height);
     this.spritesheet.row = 0;
     this.spritesheet.interval = 100000;

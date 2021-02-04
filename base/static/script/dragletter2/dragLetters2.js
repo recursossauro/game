@@ -23,6 +23,8 @@ DragLetters.prototype = {
     this.completedAudio.src = '/static/sounds/completed.mp3';
     this.completedAudio.load();
 
+    this.addObject(new Background(this.context, this));
+
     // load and draw image from Word.
     this.addObject(new WordImage(this.word.imgSrc, this.context, this));
 

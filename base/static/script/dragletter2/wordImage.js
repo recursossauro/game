@@ -30,8 +30,7 @@ WordImage.prototype = {
   'update': function() {},
 
   'draw': function() {
-    this.context.fillStyle = "#101010";
-    this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    
     this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
   },
 }

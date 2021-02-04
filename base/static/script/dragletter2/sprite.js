@@ -1,9 +1,9 @@
-var Sprite = function(context, animation = null, imageLoadingListner=null) {
+var Sprite = function(context, animation = null, fileLoadingListner=null) {
 
   this.context = context;
   this.animation = animation;
   this.hasImageToLoad = false;
-  this.imageLoadingListner = imageLoadingListner;
+  this.fileLoadingListner = fileLoadingListner;
   this.alive = true;
   this.x = 0;
   this.y = 0;
@@ -27,7 +27,7 @@ Sprite.prototype = {
       th.x = th.context.canvas.width/2-th.width/2;
       th.y = th.context.canvas.height/2-th.height/2;
 
-      if (th.imageLoadingListner) th.imageLoadingListner.imageLoaded();
+      if (th.fileLoadingListner) th.fileLoadingListner.filesLoaded();
 
     };
 
