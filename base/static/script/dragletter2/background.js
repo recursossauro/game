@@ -25,7 +25,7 @@ Background.prototype = {
 
     };
 
-    this.image.src =  '/static/images/dragletters2/background.bmp';
+    this.image.src =  '/static/images/dragletters2/background.png';
   },
 
   'update': function() {},
