@@ -1,14 +1,16 @@
 19º
+
 Dragletter2, the Sprites must be sons of a class Sprite.
 --------------------------------------------------------
 Implements search on dictionary.
 --------------------------------
+Dragletter2 do a load image and load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
+---------------------------------------------------------------------------------------------------------------------------------------
+Dragletter2 - Complite de word in the final and do a best conclusion.
+---------------------------------------------------------------------
 
 backlog
 =================
-
-Dragletter2 do a load image and load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
----------------------------------------------------------------------------------------------------------------------------------------
 
 The kid can set his prefered word and see how many this word is prefered too.
 Master add another existent master to the user
