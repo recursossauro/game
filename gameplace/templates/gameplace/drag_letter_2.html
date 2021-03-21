@@ -19,7 +19,7 @@
     <script type="text/javascript" src='{% static "script/dragletter2/letter.js" %}'></script>
     <script type="text/javascript" src='{% static "script/dragletter2/visualTouch.js" %}'></script>
     <script type="text/javascript" src='{% static "script/dragletter2/spritesheet.js" %}'></script>
-
+    <script type="text/javascript" src='{% static "script/dragletter2/spriteover.js" %}'></script>
 
     <style media="screen">
       html, body {
@@ -44,7 +44,6 @@
 
       var conclude = function() {
 
-        alert('Congratulations! You have commplited the word {{word.word}}.');
         document.getElementById("drag_letters_form").submit();
       }
 

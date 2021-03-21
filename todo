@@ -1,13 +1,13 @@
-19º
-
+20º
 Dragletter2, the Sprites must be sons of a class Sprite.
 --------------------------------------------------------
 Implements search on dictionary.
 --------------------------------
-Dragletter2 do a load image and load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
----------------------------------------------------------------------------------------------------------------------------------------
-Dragletter2 - Complite de word in the final and do a best conclusion.
----------------------------------------------------------------------
+Dragletter2 switch load file to load image
+-------------------------------------------
+Dragletter2 do a functional load sound on dragLetters2.js and the Sprites give yours urls images to load and get de images loaded;
+------------------------------------------------------------------------------------------------------------
+
 
 backlog
 =================
@@ -179,3 +179,9 @@ Prevent scroll on touch.
 18º
 Dragletter2 add an image as background
 ----------------------------------------------------------------------------------
+
+19º
+Dragletter2 - Complete de word in the final and do a best conclusion.
+---------------------------------------------------------------------
+Dragletter2 - put a music to game.
+---------------------------------------------------------------------

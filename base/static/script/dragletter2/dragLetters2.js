@@ -18,6 +18,13 @@ var DragLetters = function (document, canvas, word) {
 DragLetters.prototype = {
 
   prepare: function() {
+    // load action-music
+    this.actionMusic = new Audio();
+    this.actionMusic.src = '/static/sounds/musica-acao.mp3';
+    this.actionMusic.load();
+    this.actionMusic.volume = 0.8;
+    this.actionMusic.loop   = true;
+
     // load completedAudio
     this.completedAudio = new Audio();
     this.completedAudio.src = '/static/sounds/completed.mp3';
@@ -68,7 +75,7 @@ DragLetters.prototype = {
     this.animation.newProcessing(this.collision);
   },
 
-  "addObject": function(object) {
+  addObject: function(object) {
 
     this.animation.addSprite(object);
     if (object.numFilesToLoad > 0) {
@@ -82,6 +89,7 @@ DragLetters.prototype = {
     this.numFilesLoaded++;
 
     if (this.numFilesToLoad==this.numFilesLoaded) {
+      this.actionMusic.play();
       this.animation.turnOn();
     }
   },
@@ -91,7 +99,14 @@ DragLetters.prototype = {
     if (this.numHited.indexOf(sprite)==-1) this.numHited.push(sprite);
 
     if (this.numHited.length == this.word.text.length) {
-      this.over();
+      var th = this;
+      this.animation.newProcessing({
+        process: function() {
+          th.addObject(new SpriteOver(th.context, th.animation, null, th, th.word.text, th.completedAudio));
+          this.animation.deleteProcessing(this);
+        },
+      })
+
     }
   },
 
@@ -99,7 +114,6 @@ DragLetters.prototype = {
   over: function() {
     // animation stop;
     this.animation.on = false;
-    this.completedAudio.play();
     conclude();
   },
 }
