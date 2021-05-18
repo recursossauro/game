@@ -13,7 +13,7 @@
 <article class="">
   <p>{{object.name}}</p>
   {% if object.get_photo_url != None %}
-    <img src="{{object.photo.url}}" alt="avatar">
+    <img src="{{object.photo.url}}" alt="avatar" class="img_panel">
   {% else %}
     <img src="{% static '/images/generic-avatar.png' %}" alt="avatar" class="img_panel">
   {% endif %}
