@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% load widget_tweaks %}
 
 {% block title %}{{title}} | {{block.super}}{% endblock %}
@@ -8,37 +10,42 @@
 <header>
   <h3>{{title}}</h3>
 </header>
-<section>
-  <form class="form-horizontal" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for error in form.non_field_errors %}
-      <div class="alert alert-danger">
-        {{ error }}
-      </div>
-    {% endfor %}
-    <fieldset>
-      {% for field in form %}
-        <div class="form-group{% if field.errors %} has-error {% endif %}">
-          <label for="{{ field.auto_id }}" class="control-label">{{ field.label }}</label>
-          <div class="">
-            {% if field.auto_id == 'id_birth' %}
-              {% render_field field class="form-control" type="date" %}
-            {% else %}
-              {% render_field field class="form-control" %}
-            {%endif%}
-            {% for error in field.errors %}
-              <span class="help-block">{{ error }}</span>
-            {% endfor %}
-          </div>
+<section class="row">
+  <aside class="col-md-6 col-md-offset-3">
+    <img class="avatar_img" src="{% static 'images/generic-avatar.png' %}" alt="generic">
+  </aside>
+  <main class="col-md-6 col-md-offset-3">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ error }}
         </div>
       {% endfor %}
-        <div class="form-group">
-          <div class="col-md-9 col-md-offset-3">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+      <fieldset>
+        {% for field in form %}
+          <div class="form-group{% if field.errors %} has-error {% endif %}">
+            <label for="{{ field.auto_id }}" class="control-label">{{ field.label }}</label>
+            <div class="">
+              {% if field.auto_id == 'id_birth' %}
+                {% render_field field class="form-control" type="date" %}
+              {% else %}
+                {% render_field field class="form-control" %}
+              {%endif%}
+              {% for error in field.errors %}
+                <span class="help-block">{{ error }}</span>
+              {% endfor %}
+            </div>
           </div>
-        </div>
-    </fieldset>
-  </form>
+        {% endfor %}
+          <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+              <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+          </div>
+      </fieldset>
+    </form>
+  </main>
 </section>
 
 {% endblock %}
