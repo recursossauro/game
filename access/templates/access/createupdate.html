@@ -12,7 +12,7 @@
 </header>
 <section class="row">
   <aside class="col-md-6 col-md-offset-3">
-    <img id="id_photo_img" class="img" src="{% static 'images/generic-avatar.png' %}" alt="generic">
+      <img id="id_photo_img" class="img" src="{% if object.get_photo_url != None %}{{object.photo.url}}{% else %}{% static 'images/generic-avatar.png' %}{% endif %}" alt="photo">
   </aside>
   <main class="col-md-6 col-md-offset-3">
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
