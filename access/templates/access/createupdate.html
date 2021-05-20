@@ -4,6 +4,7 @@
 
 {% load widget_tweaks %}
 
+
 {% block title %}{{title}} | {{block.super}}{% endblock %}
 
 {% block content %}
@@ -27,11 +28,7 @@
           <div class="form-group{% if field.errors %} has-error {% endif %}">
             <label for="{{ field.auto_id }}" class="control-label">{{ field.label }}</label>
             <div class="">
-              {% if field.auto_id == 'id_birth' %}
-                {% render_field field class="form-control" type="date" %}
-              {% else %}
-                {% render_field field class="form-control" %}
-              {%endif%}
+              {% render_field field class="form-control" %}
               {% for error in field.errors %}
                 <span class="help-block">{{ error }}</span>
               {% endfor %}
@@ -49,10 +46,18 @@
 </section>
 
 <script type="text/javascript">
+  // Show photo
   document.getElementById('id_photo').onchange = function () {
     var src = URL.createObjectURL(this.files[0]);
     document.getElementById('id_photo_img').src = src;
   }
+
+  // Date time to date treatment.
+  // to solve the time problem with time in a html date field.
+  birth = document.getElementById('id_birth');
+  value = birth.value;
+  birth.type = 'date';
+  birth.value = value.substring(0,10); // eliminate the time;
 </script>
 
 {% endblock %}

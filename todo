@@ -194,3 +194,5 @@ Updatepersonaldata - show photo when it change.
 
 Updatepersonaldata - show saved photo.
 ------------------------------------------------
+
+Updatepersonaldata - id_birth, datetime conflict with html date type.
