@@ -46,11 +46,8 @@
 </section>
 
 <script type="text/javascript">
-  // Show photo
-  document.getElementById('id_photo').onchange = function () {
-    var src = URL.createObjectURL(this.files[0]);
-    document.getElementById('id_photo_img').src = src;
-  }
+  // showPhoto
+  showPhoto();
 
   // Date time to date treatment.
   // to solve the time problem with time in a html date field.

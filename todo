@@ -1,6 +1,4 @@
 20º
-Create javascript program to load image field url and read the image and show on <id_field>_images 
---------------------------------------
 Game place, the person photo limit the presentation size.
 ----------------------------------------------------------
 Dragletter2, the Sprites must be sons of a class Sprite.
@@ -193,8 +191,9 @@ Dragletter2 - put a music to game.
 20º
 Updatepersonaldata - show photo when it change.
 ------------------------------------------------
-
+Create javascript program to load image field url and read the image and show on <id_field>_images
+--------------------------------------
 Updatepersonaldata - show saved photo.
 ------------------------------------------------
-
 Updatepersonaldata - id_birth, datetime conflict with html date type.
+-----------------------------------------------------------------------
