@@ -1,4 +1,3 @@
-alert('1');
 // Show photo
 function showPhoto() {
   fields = document.querySelectorAll("input[type=file]");
